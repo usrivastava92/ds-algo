@@ -5,9 +5,9 @@ import java.util.stream.IntStream;
 public class MirrorReflection {
 
     public static void main(String[] args) {
-        int[] ps = {2};
-        int[] qs = {1};
-        int[] outputs = {2};
+        int[] ps = {2, 4};
+        int[] qs = {1, 2};
+        int[] outputs = {2, 2};
         MirrorReflection mirrorReflection = new MirrorReflection();
         IntStream.range(0, ps.length).forEachOrdered(i -> {
             System.out.println("Input : p -> " + ps[i] + " q -> " + qs[i]);
@@ -17,25 +17,26 @@ public class MirrorReflection {
     }
 
     public int mirrorReflection(int p, int q) {
-        int x = 0;
-        int y = 0;
-        int tx = p;
-        int ty = q;
-        while (x % p != 0 || y % p != 0 || (x == 0 && y == 0)) {
-            x = x + tx;
-            y = y + ty;
-            tx *= -1;
-            if (y > p || y < 0) {
-                ty *= -1;
-                if (y > p) {
-                    y = p + p - y;
-                }
-                if (y < 0) {
-                    y = -y;
-                }
-            }
+        int gcd = gcd(p, q);
+        boolean xIsEven = (p / gcd) % 2 == 0;
+        boolean yIsEven = (q / gcd) % 2 == 0;
+        if (xIsEven && !yIsEven) {
+            return 2;
         }
-        return getWinningIndex(x, y, p);
+        if (!xIsEven && !yIsEven) {
+            return 1;
+        }
+        if (!xIsEven && yIsEven) {
+            return 0;
+        }
+        return 3;
+    }
+
+    private int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
     }
 
     private int getWinningIndex(float x, float y, int p) {
