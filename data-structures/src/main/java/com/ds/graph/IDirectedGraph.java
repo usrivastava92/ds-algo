@@ -1,4 +1,4 @@
-package com.ds.graph.representation;
+package com.ds.graph;
 
 public interface IDirectedGraph<Node> extends IGraph<Node> {
 }

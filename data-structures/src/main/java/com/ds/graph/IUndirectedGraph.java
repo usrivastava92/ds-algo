@@ -1,4 +1,4 @@
-package com.ds.graph.representation;
+package com.ds.graph;
 
 public interface IUndirectedGraph<Node> extends IGraph<Node> {
 
