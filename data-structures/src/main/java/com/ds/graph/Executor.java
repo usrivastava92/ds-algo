@@ -15,9 +15,9 @@ public class Executor {
         graph.addEdge(3, 4, 19);
 
         System.out.println(graph);
-        System.out.println(graph.getAllEdges());
-        System.out.println(GraphUtils.applyDijkstra(graph, GraphUtils.getRandomStartNode(graph)));
+        System.out.println(GraphUtils.applyDijkstra(graph, GraphUtils.getRandomNode(graph)));
         System.out.println(GraphUtils.applyKruskal(graph));
+        System.out.println(GraphUtils.applyPrims(graph));
     }
 
 }

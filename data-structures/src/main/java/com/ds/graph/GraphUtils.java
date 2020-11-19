@@ -1,7 +1,6 @@
 package com.ds.graph;
 
 import com.ds.utils.NumberUtils;
-import javafx.util.Pair;
 
 import java.util.*;
 
@@ -17,9 +16,9 @@ public class GraphUtils {
         minHeap.add(start);
         while (!minHeap.isEmpty()) {
             Node nearest = minHeap.poll();
-            for (Map.Entry<Node, Integer> neighbourEntry : graph.getNeighboursWithWeights(nearest).entrySet()) {
-                Node neighbour = neighbourEntry.getKey();
-                Integer weight = neighbourEntry.getValue();
+            for (WeightedEdge<Node, Integer> neighbourEntry : graph.getNeighbouringWeightedEdges(nearest)) {
+                Node neighbour = neighbourEntry.getTo();
+                Integer weight = neighbourEntry.getWeight();
                 Integer currDist = map.get(neighbour);
                 int minifiedWeight = -1;
                 if (currDist == null) {
@@ -39,6 +38,7 @@ public class GraphUtils {
 
     /**
      * This method returns weight for min spanning tree, it is implemented using Kruskal's algorithm
+     *
      * @param graph
      * @param <Node>
      * @return weight of min spanning tree
@@ -49,13 +49,13 @@ public class GraphUtils {
         }
         Set<Node> visited = new HashSet<>();
         int minWeight = 0;
-        PriorityQueue<Pair<Node, Pair<Node, Integer>>> minHeap = new PriorityQueue<>(Comparator.comparingInt(pair -> pair.getValue().getValue()));
-        minHeap.addAll(graph.getAllEdgesWithWeights());
+        PriorityQueue<WeightedEdge<Node, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(WeightedEdge::getWeight));
+        minHeap.addAll(graph.getAllWeightedEdges());
         while (!minHeap.isEmpty()) {
-            Pair<Node, Pair<Node, Integer>> minEdge = minHeap.poll();
-            Node from = minEdge.getKey();
-            Node to = minEdge.getValue().getKey();
-            Integer weight = minEdge.getValue().getValue();
+            WeightedEdge<Node, Integer> minEdge = minHeap.poll();
+            Node from = minEdge.getFrom();
+            Node to = minEdge.getTo();
+            Integer weight = minEdge.getWeight();
             if (!visited.contains(from) || !visited.contains(to)) {
                 visited.add(from);
                 visited.add(to);
@@ -67,6 +67,7 @@ public class GraphUtils {
 
     /**
      * This method returns weight for min spanning tree, it is implemented using Prim's algorithm
+     *
      * @param graph
      * @param <Node>
      * @return weight of min spanning tree
@@ -75,19 +76,31 @@ public class GraphUtils {
         if (graph == null || graph.isEmpty()) {
             return null;
         }
-        Set<Node> visited = new HashSet<>();
         int minWeight = 0;
-        PriorityQueue<Pair<Node, Pair<Node, Integer>>> minHeap = new PriorityQueue<>(Comparator.comparingInt(pair -> pair.getValue().getValue()));
-        minHeap.addAll(graph.getAllEdgesWithWeights());
+        WeightedEdge<Node, Integer> minWeightEdge = null;
+        for (WeightedEdge<Node, Integer> edge : graph.getAllWeightedEdges()) {
+            if (minWeightEdge == null) {
+                minWeightEdge = edge;
+            } else if (edge.getWeight() < minWeightEdge.getWeight()) {
+                minWeightEdge = edge;
+            }
+        }
+        assert minWeightEdge != null : "Unexpected behaviour, minWeightEdge is null";
+        Set<Node> visited = new HashSet<>();
+        PriorityQueue<WeightedEdge<Node, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(WeightedEdge::getWeight));
+        minHeap.add(minWeightEdge);
         while (!minHeap.isEmpty()) {
-            Pair<Node, Pair<Node, Integer>> minEdge = minHeap.poll();
-            Node from = minEdge.getKey();
-            Node to = minEdge.getValue().getKey();
-            Integer weight = minEdge.getValue().getValue();
-            if (!visited.contains(from) || !visited.contains(to)) {
-                visited.add(from);
-                visited.add(to);
-                minWeight += weight;
+            WeightedEdge<Node, Integer> minEdge = minHeap.poll();
+            if (!visited.contains(minEdge.getFrom()) || !visited.contains(minEdge.getTo())) {
+                minWeight += minEdge.getWeight();
+                if (!visited.contains(minEdge.getFrom())) {
+                    visited.add(minEdge.getFrom());
+                    minHeap.addAll(graph.getNeighbouringWeightedEdges(minEdge.getFrom()));
+                }
+                if (!visited.contains(minEdge.getTo())) {
+                    visited.add(minEdge.getTo());
+                    minHeap.addAll(graph.getNeighbouringWeightedEdges(minEdge.getTo()));
+                }
             }
         }
         return minWeight;
@@ -192,7 +205,7 @@ public class GraphUtils {
     }
 
     public static <Node> boolean hasCycle(IUndirectedGraph<Node> graph) {
-        return hasCycle(graph, getRandomStartNode(graph), null, new HashSet<>());
+        return hasCycle(graph, getRandomNode(graph), null, new HashSet<>());
     }
 
     private static <Node> boolean hasCycle(IUndirectedGraph<Node> graph, Node start, Node parent, Set<Node> visitedSet) {
@@ -208,10 +221,10 @@ public class GraphUtils {
     }
 
     public static <Node> boolean hasCycle(IDirectedGraph<Node> graph) {
-        return hasCycle(graph, getRandomStartNode(graph), new HashMap<>());
+        return hasCycle(graph, getRandomNode(graph), new HashMap<>());
     }
 
-    public static <Node> Node getRandomStartNode(IGraph<Node> graph) {
+    public static <Node> Node getRandomNode(IGraph<Node> graph) {
         Node start = null;
         for (Node node : graph.getAllNodes()) {
             start = node;

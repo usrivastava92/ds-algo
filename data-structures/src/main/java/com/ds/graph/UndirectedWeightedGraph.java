@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> implements IWeightedGraph<Node, Weight>, IUndirectedGraph<Node> {
 
     private final Map<Node, Map<Node, Weight>> map;
-    private final Set<Pair<Node, Node>> edges;
+    private final Set<WeightedEdge<Node, Weight>> edges;
 
     public UndirectedWeightedGraph() {
         this.map = new HashMap<>();
@@ -37,7 +37,7 @@ public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> im
 
     @Override
     public void addEdge(Node from, Node to, Weight weight) {
-        edges.add(new Pair<>(from, to));
+        edges.add(new WeightedEdge<>(from, to, weight));
         Map<Node, Weight> neighbours1 = map.getOrDefault(from, new HashMap<>());
         Map<Node, Weight> neighbours2 = map.getOrDefault(to, new HashMap<>());
         neighbours1.put(to, weight);
@@ -47,23 +47,26 @@ public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> im
     }
 
     @Override
-    public Map<Node, Weight> getNeighboursWithWeights(Node node) {
-        return map.getOrDefault(node, Collections.emptyMap());
+    public Set<WeightedEdge<Node, Weight>> getNeighbouringWeightedEdges(Node node) {
+        return map.getOrDefault(node, Collections.emptyMap()).entrySet().stream()
+                .map(entry -> new WeightedEdge<>(node, entry.getKey(), entry.getValue()))
+                .collect(Collectors.toSet());
     }
 
     @Override
-    public Set<Pair<Node, Pair<Node, Weight>>> getAllEdgesWithWeights() {
-        return edges.stream().map(edge -> new Pair<>(edge.getKey(), new Pair<>(edge.getValue(), getEdgeWeight(edge.getKey(), edge.getValue())))).collect(Collectors.toSet());
-    }
-
-    @Override
-    public Set<Pair<Node, Node>> getAllEdges() {
+    public Set<WeightedEdge<Node, Weight>> getAllWeightedEdges() {
         return edges;
     }
 
     @Override
+    public Set<Edge<Node>> getAllEdges() {
+        return edges.stream().map(weightedEdge -> new Edge<>(weightedEdge.getFrom(), weightedEdge.getTo())).collect(Collectors.toSet());
+    }
+
+    @Override
     public void deleteEdge(Node from, Node to) {
-        edges.remove(new Pair<>(from, to));
+        edges.remove(new WeightedEdge<>(from, to, getEdgeWeight(from, to)));
+        edges.remove(new WeightedEdge<>(to, from, getEdgeWeight(from, to)));
         map.getOrDefault(from, Collections.emptyMap()).remove(to);
         map.getOrDefault(to, Collections.emptyMap()).remove(from);
     }

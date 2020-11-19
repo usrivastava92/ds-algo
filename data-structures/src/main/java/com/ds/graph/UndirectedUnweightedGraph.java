@@ -8,7 +8,7 @@ import java.util.*;
 public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, IUnweightedGraph<Node> {
 
     private final Map<Node, Set<Node>> map;
-    private final Set<Pair<Node, Node>> edges;
+    private final Set<Edge<Node>> edges;
 
     public UndirectedUnweightedGraph() {
         map = new HashMap<>();
@@ -37,7 +37,7 @@ public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, 
 
     @Override
     public void addEdge(Node from, Node to) {
-        edges.add(new Pair<>(from, to));
+        edges.add(new Edge<>(from, to));
         Set<Node> neighbours1 = map.getOrDefault(from, new HashSet<>());
         Set<Node> neighbours2 = map.getOrDefault(to, new HashSet<>());
         neighbours1.add(to);
@@ -47,13 +47,14 @@ public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, 
     }
 
     @Override
-    public Set<Pair<Node, Node>> getAllEdges() {
+    public Set<Edge<Node>> getAllEdges() {
         return edges;
     }
 
     @Override
     public void removeEdge(Node from, Node to) {
-        edges.remove(new Pair<>(from, to));
+        edges.remove(new Edge<>(from, to));
+        edges.remove(new Edge<>(to, from));
         map.getOrDefault(from, Collections.emptySet()).remove(to);
         map.getOrDefault(to, Collections.emptySet()).remove(from);
     }
