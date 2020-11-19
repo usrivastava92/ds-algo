@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ArraySegmentTree implements SegmentTree {
 
-    private int[] tree;
+    private final int[] tree;
 
     public ArraySegmentTree(int[] arr) {
         int n = arr.length;
