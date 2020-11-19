@@ -1,5 +1,7 @@
 package com.ds.graph;
 
+import javafx.util.Pair;
+
 import java.util.Set;
 
 public interface IGraph<Node> {
@@ -11,5 +13,8 @@ public interface IGraph<Node> {
     boolean isConnected(Node node1, Node node2);
 
     boolean isEmpty();
+
+    Set<Pair<Node, Node>> getAllEdges();
+
 
 }

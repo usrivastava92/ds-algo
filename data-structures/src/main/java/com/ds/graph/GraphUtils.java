@@ -1,17 +1,96 @@
 package com.ds.graph;
 
 import com.ds.utils.NumberUtils;
+import javafx.util.Pair;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class GraphUtils {
 
     private GraphUtils() {
     }
 
-    public static <Node> Map<Node, Integer> applyDijkstra(IWeightedGraph<Node, Integer> adjList, Node start) {
-        return Collections.emptyMap();
+    public static <Node> Map<Node, Integer> applyDijkstra(IWeightedGraph<Node, Integer> graph, Node start) {
+        Map<Node, Integer> map = new HashMap<>();
+        map.put(start, 0);
+        PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(map::get));
+        minHeap.add(start);
+        while (!minHeap.isEmpty()) {
+            Node nearest = minHeap.poll();
+            for (Map.Entry<Node, Integer> neighbourEntry : graph.getNeighboursWithWeights(nearest).entrySet()) {
+                Node neighbour = neighbourEntry.getKey();
+                Integer weight = neighbourEntry.getValue();
+                Integer currDist = map.get(neighbour);
+                int minifiedWeight = -1;
+                if (currDist == null) {
+                    minifiedWeight = map.get(nearest) + weight;
+                } else {
+                    minifiedWeight = Integer.min(map.get(nearest) + weight, currDist);
+                }
+                boolean isVisited = map.containsKey(neighbour);
+                map.put(neighbour, minifiedWeight);
+                if (!isVisited) {
+                    minHeap.add(neighbour);
+                }
+            }
+        }
+        return map;
+    }
+
+    /**
+     * This method returns weight for min spanning tree, it is implemented using Kruskal's algorithm
+     * @param graph
+     * @param <Node>
+     * @return weight of min spanning tree
+     */
+    public static <Node> Integer applyKruskal(IWeightedGraph<Node, Integer> graph) {
+        if (graph == null || graph.isEmpty()) {
+            return null;
+        }
+        Set<Node> visited = new HashSet<>();
+        int minWeight = 0;
+        PriorityQueue<Pair<Node, Pair<Node, Integer>>> minHeap = new PriorityQueue<>(Comparator.comparingInt(pair -> pair.getValue().getValue()));
+        minHeap.addAll(graph.getAllEdgesWithWeights());
+        while (!minHeap.isEmpty()) {
+            Pair<Node, Pair<Node, Integer>> minEdge = minHeap.poll();
+            Node from = minEdge.getKey();
+            Node to = minEdge.getValue().getKey();
+            Integer weight = minEdge.getValue().getValue();
+            if (!visited.contains(from) || !visited.contains(to)) {
+                visited.add(from);
+                visited.add(to);
+                minWeight += weight;
+            }
+        }
+        return minWeight;
+    }
+
+    /**
+     * This method returns weight for min spanning tree, it is implemented using Prim's algorithm
+     * @param graph
+     * @param <Node>
+     * @return weight of min spanning tree
+     */
+    public static <Node> Integer applyPrims(IWeightedGraph<Node, Integer> graph) {
+        if (graph == null || graph.isEmpty()) {
+            return null;
+        }
+        Set<Node> visited = new HashSet<>();
+        int minWeight = 0;
+        PriorityQueue<Pair<Node, Pair<Node, Integer>>> minHeap = new PriorityQueue<>(Comparator.comparingInt(pair -> pair.getValue().getValue()));
+        minHeap.addAll(graph.getAllEdgesWithWeights());
+        while (!minHeap.isEmpty()) {
+            Pair<Node, Pair<Node, Integer>> minEdge = minHeap.poll();
+            Node from = minEdge.getKey();
+            Node to = minEdge.getValue().getKey();
+            Integer weight = minEdge.getValue().getValue();
+            if (!visited.contains(from) || !visited.contains(to)) {
+                visited.add(from);
+                visited.add(to);
+                minWeight += weight;
+            }
+        }
+        return minWeight;
     }
 
     public static DirectedWeightedGraph<Integer, Integer> createRandomDirectedWeightedGraph(int numberOfNodes) {
@@ -113,12 +192,7 @@ public class GraphUtils {
     }
 
     public static <Node> boolean hasCycle(IUndirectedGraph<Node> graph) {
-        Node start = null;
-        for (Node node : graph.getAllNodes()) {
-            start = node;
-            break;
-        }
-        return hasCycle(graph, start, null, new HashSet<>());
+        return hasCycle(graph, getRandomStartNode(graph), null, new HashSet<>());
     }
 
     private static <Node> boolean hasCycle(IUndirectedGraph<Node> graph, Node start, Node parent, Set<Node> visitedSet) {
@@ -134,12 +208,16 @@ public class GraphUtils {
     }
 
     public static <Node> boolean hasCycle(IDirectedGraph<Node> graph) {
+        return hasCycle(graph, getRandomStartNode(graph), new HashMap<>());
+    }
+
+    public static <Node> Node getRandomStartNode(IGraph<Node> graph) {
         Node start = null;
         for (Node node : graph.getAllNodes()) {
             start = node;
             break;
         }
-        return hasCycle(graph, start, new HashMap<>());
+        return start;
     }
 
     private static <Node> boolean hasCycle(IDirectedGraph<Node> graph, Node start, Map<Node, Integer> map) {

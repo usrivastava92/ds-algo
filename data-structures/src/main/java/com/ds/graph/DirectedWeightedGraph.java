@@ -3,6 +3,7 @@ package com.ds.graph;
 import javafx.util.Pair;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DirectedWeightedGraph<Node, Weight extends Comparable<Weight>> implements IDirectedGraph<Node>, IWeightedGraph<Node, Weight> {
 
@@ -35,11 +36,6 @@ public class DirectedWeightedGraph<Node, Weight extends Comparable<Weight>> impl
     }
 
     @Override
-    public Map<Node, Map<Node, Weight>> getAdjacencyList() {
-        return map;
-    }
-
-    @Override
     public void addEdge(Node from, Node to, Weight weight) {
         edges.add(new Pair<>(from, to));
         Map<Node, Weight> neighbours = map.getOrDefault(from, new HashMap<>());
@@ -48,8 +44,13 @@ public class DirectedWeightedGraph<Node, Weight extends Comparable<Weight>> impl
     }
 
     @Override
-    public Map<Node, Weight> getNeighboursWithEdges(Node node) {
+    public Map<Node, Weight> getNeighboursWithWeights(Node node) {
         return map.getOrDefault(node, Collections.emptyMap());
+    }
+
+    @Override
+    public Set<Pair<Node, Pair<Node, Weight>>> getAllEdgesWithWeights() {
+        return edges.stream().map(edge -> new Pair<>(edge.getKey(), new Pair<>(edge.getKey(), getEdgeWeight(edge.getKey(), edge.getValue())))).collect(Collectors.toSet());
     }
 
     @Override
@@ -67,4 +68,5 @@ public class DirectedWeightedGraph<Node, Weight extends Comparable<Weight>> impl
     public Weight getEdgeWeight(Node from, Node to) {
         return map.getOrDefault(from, Collections.emptyMap()).get(to);
     }
+
 }

@@ -3,6 +3,7 @@ package com.ds.graph;
 import javafx.util.Pair;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> implements IWeightedGraph<Node, Weight>, IUndirectedGraph<Node> {
 
@@ -40,19 +41,19 @@ public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> im
         Map<Node, Weight> neighbours1 = map.getOrDefault(from, new HashMap<>());
         Map<Node, Weight> neighbours2 = map.getOrDefault(to, new HashMap<>());
         neighbours1.put(to, weight);
-        neighbours1.put(from, weight);
+        neighbours2.put(from, weight);
         map.put(from, neighbours1);
         map.put(to, neighbours2);
     }
 
     @Override
-    public Map<Node, Map<Node, Weight>> getAdjacencyList() {
-        return map;
+    public Map<Node, Weight> getNeighboursWithWeights(Node node) {
+        return map.getOrDefault(node, Collections.emptyMap());
     }
 
     @Override
-    public Map<Node, Weight> getNeighboursWithEdges(Node node) {
-        return map.getOrDefault(node, Collections.emptyMap());
+    public Set<Pair<Node, Pair<Node, Weight>>> getAllEdgesWithWeights() {
+        return edges.stream().map(edge -> new Pair<>(edge.getKey(), new Pair<>(edge.getValue(), getEdgeWeight(edge.getKey(), edge.getValue())))).collect(Collectors.toSet());
     }
 
     @Override
@@ -71,4 +72,12 @@ public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> im
     public Weight getEdgeWeight(Node from, Node to) {
         return map.getOrDefault(from, Collections.emptyMap()).get(to);
     }
+
+    @Override
+    public String toString() {
+        return "UndirectedWeightedGraph{" +
+                "map=" + map +
+                '}';
+    }
+
 }

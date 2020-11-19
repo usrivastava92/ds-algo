@@ -36,17 +36,12 @@ public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, 
     }
 
     @Override
-    public Map<Node, Set<Node>> getAdjacencyList() {
-       return map;
-    }
-
-    @Override
     public void addEdge(Node from, Node to) {
         edges.add(new Pair<>(from, to));
         Set<Node> neighbours1 = map.getOrDefault(from, new HashSet<>());
         Set<Node> neighbours2 = map.getOrDefault(to, new HashSet<>());
         neighbours1.add(to);
-        neighbours1.add(from);
+        neighbours2.add(from);
         map.put(from, neighbours1);
         map.put(to, neighbours2);
     }
@@ -62,4 +57,12 @@ public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, 
         map.getOrDefault(from, Collections.emptySet()).remove(to);
         map.getOrDefault(to, Collections.emptySet()).remove(from);
     }
+
+    @Override
+    public String toString() {
+        return "UndirectedUnweightedGraph{" +
+                "map=" + map +
+                '}';
+    }
+
 }

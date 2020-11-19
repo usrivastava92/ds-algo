@@ -9,15 +9,12 @@ public interface IWeightedGraph<Node, Weight extends Comparable<Weight>> extends
 
     void addEdge(Node from, Node to, Weight weight);
 
-    Map<Node, Weight> getNeighboursWithEdges(Node node);
+    Map<Node, Weight> getNeighboursWithWeights(Node node);
 
-    Set<Pair<Node, Node>> getAllEdges();
+    Set<Pair<Node, Pair<Node, Weight>>> getAllEdgesWithWeights();
 
     void deleteEdge(Node from, Node to);
 
     Weight getEdgeWeight(Node from, Node to);
-
-    Map<Node,Map<Node,Weight>> getAdjacencyList();
-
 
 }

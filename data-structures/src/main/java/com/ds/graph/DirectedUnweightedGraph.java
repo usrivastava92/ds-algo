@@ -46,15 +46,18 @@ public class DirectedUnweightedGraph<Node> implements IDirectedGraph<Node>, IUnw
     }
 
     @Override
-    public Map<Node, Set<Node>> getAdjacencyList() {
-        return map;
-    }
-
-    @Override
     public void addEdge(Node from, Node to) {
         edges.add(new Pair<>(from, to));
         Set<Node> neighbours = map.getOrDefault(from, new HashSet<>());
         neighbours.add(to);
         map.put(from, neighbours);
     }
+
+    @Override
+    public String toString() {
+        return "DirectedUnweightedGraph{" +
+                "map=" + map +
+                '}';
+    }
+
 }
