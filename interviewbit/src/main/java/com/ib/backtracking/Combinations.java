@@ -13,7 +13,7 @@ public class Combinations {
 //        bruteForce(arr, n, r, ans);
         //printCombinations(arr, n, r, 0, 0, ans);
         Combinations combinations = new Combinations();
-        combinations.combine(4, 2);
+        System.out.println(combinations.combine(4, 3));
     }
 
     public ArrayList<ArrayList<Integer>> combine(int A, int B) {
@@ -22,14 +22,14 @@ public class Combinations {
             return result;
         }
         if (B == 1) {
-            for (Integer i = 1; i <= A; i++) {
+            for (int i = 1; i <= A; i++) {
                 ArrayList<Integer> temp = new ArrayList<>();
                 temp.add(i);
                 result.add(temp);
             }
             return result;
         }
-        printCombinations(A, B, 0, 0, new ArrayList<Integer>(Arrays.asList(new Integer[B])), result);
+        printCombinations(A, B, 0, 0, new ArrayList<>(Arrays.asList(new Integer[B])), result);
         return result;
     }
 
