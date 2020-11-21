@@ -50,4 +50,28 @@ public class NumberUtils {
         return lowerLimitInclusive + new Random().nextDouble() * (upperLimitInclusive - lowerLimitInclusive);
     }
 
+    public static long getNcR(int n, int r) {
+        if (n == r || r == 0) {
+            return 1;
+        }
+        long p = 1;
+        long k = 1;
+        r = Math.min(r, n - r);
+        while (r > 0) {
+            p *= (n--);
+            k *= (r--);
+            long gcd = gcd(p, k);
+            p /= gcd;
+            k /= gcd;
+        }
+        return p;
+    }
+
+    public static long gcd(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
 }
