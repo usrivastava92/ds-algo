@@ -52,7 +52,7 @@ public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, 
     }
 
     @Override
-    public void removeEdge(Node from, Node to) {
+    public void deleteEdge(Node from, Node to) {
         edges.remove(new Edge<>(from, to));
         edges.remove(new Edge<>(to, from));
         map.getOrDefault(from, Collections.emptySet()).remove(to);
@@ -60,10 +60,13 @@ public class UndirectedUnweightedGraph<Node> implements IUndirectedGraph<Node>, 
     }
 
     @Override
+    public void deleteNode(Node node) {
+        getAllEdges().stream().filter(edge -> edge.getFrom().equals(node) || edge.getTo().equals(node)).forEach(edge -> deleteEdge(edge.getFrom(), edge.getTo()));
+    }
+
+    @Override
     public String toString() {
-        return "UndirectedUnweightedGraph{" +
-                "map=" + map +
-                '}';
+        return "UndirectedUnweightedGraph{" + "map=" + map + '}';
     }
 
 }

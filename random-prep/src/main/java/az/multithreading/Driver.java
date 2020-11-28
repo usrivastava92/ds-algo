@@ -2,7 +2,7 @@ package az.multithreading;
 
 import java.util.PriorityQueue;
 
-public class Executor {
+public class Driver {
 
     public static void main(String[] args) {
         BlockingQueue<Integer> blockingQueue = new BlockingQueue<>(10);

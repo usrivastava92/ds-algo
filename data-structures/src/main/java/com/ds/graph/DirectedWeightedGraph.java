@@ -70,4 +70,13 @@ public class DirectedWeightedGraph<Node, Weight extends Comparable<Weight>> impl
         return map.getOrDefault(from, Collections.emptyMap()).get(to);
     }
 
+    @Override
+    public void deleteNode(Node node) {
+        getAllEdges().stream().filter(edge -> edge.getFrom().equals(node) || edge.getTo().equals(node)).forEach(edge -> deleteEdge(edge.getFrom(), edge.getTo()));
+    }
+
+    @Override
+    public String toString() {
+        return "DirectedWeightedGraph{" + "map=" + map + '}';
+    }
 }

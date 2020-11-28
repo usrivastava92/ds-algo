@@ -1,7 +1,5 @@
 package com.ds.graph;
 
-import javafx.util.Pair;
-
 import java.util.*;
 
 public class DirectedUnweightedGraph<Node> implements IDirectedGraph<Node>, IUnweightedGraph<Node> {
@@ -40,7 +38,12 @@ public class DirectedUnweightedGraph<Node> implements IDirectedGraph<Node>, IUnw
     }
 
     @Override
-    public void removeEdge(Node from, Node to) {
+    public void deleteNode(Node node) {
+        getAllEdges().stream().filter(edge -> edge.getFrom().equals(node) || edge.getTo().equals(node)).forEach(edge -> deleteEdge(edge.getFrom(), edge.getTo()));
+    }
+
+    @Override
+    public void deleteEdge(Node from, Node to) {
         edges.remove(new Edge<>(from, to));
         map.getOrDefault(from, new HashSet<>()).remove(to);
     }
@@ -55,9 +58,7 @@ public class DirectedUnweightedGraph<Node> implements IDirectedGraph<Node>, IUnw
 
     @Override
     public String toString() {
-        return "DirectedUnweightedGraph{" +
-                "map=" + map +
-                '}';
+        return "DirectedUnweightedGraph{" + "map=" + map + '}';
     }
 
 }

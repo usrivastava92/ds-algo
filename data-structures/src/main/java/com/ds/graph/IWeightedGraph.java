@@ -1,8 +1,5 @@
 package com.ds.graph;
 
-import javafx.util.Pair;
-
-import java.util.Map;
 import java.util.Set;
 
 public interface IWeightedGraph<Node, Weight extends Comparable<Weight>> extends IGraph<Node> {

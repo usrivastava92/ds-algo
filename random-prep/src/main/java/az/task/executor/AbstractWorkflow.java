@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
-public abstract class Workflow {
+public abstract class AbstractWorkflow<ResponseObject> {
 
     private final List<Set<AbstractTask>> taskSets;
 
-    public Workflow() {
+    public AbstractWorkflow() {
         this.taskSets = new ArrayList<>();
+        populateTaskSet();
     }
 
     public void addTask(AbstractTask task, int index) {
@@ -26,4 +28,9 @@ public abstract class Workflow {
     public List<Set<AbstractTask>> getTaskSets() {
         return taskSets;
     }
+
+    public abstract void populateTaskSet();
+
+    public abstract ResponseObject aggregateResponse(ConcurrentHashMap<AbstractTask, Object> map);
+
 }

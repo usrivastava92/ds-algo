@@ -1,6 +1,5 @@
 package com.ds.graph;
 
-import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -77,10 +76,13 @@ public class UndirectedWeightedGraph<Node, Weight extends Comparable<Weight>> im
     }
 
     @Override
+    public void deleteNode(Node node) {
+        getAllEdges().stream().filter(edge -> edge.getFrom().equals(node) || edge.getTo().equals(node)).forEach(edge -> deleteEdge(edge.getFrom(), edge.getTo()));
+    }
+
+    @Override
     public String toString() {
-        return "UndirectedWeightedGraph{" +
-                "map=" + map +
-                '}';
+        return "UndirectedWeightedGraph{" + "map=" + map + '}';
     }
 
 }

@@ -1,20 +1,28 @@
 package az.task.executor;
 
-import java.time.Duration;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 
-public abstract class AbstractTask implements Runnable {
+public abstract class AbstractTask<RequestObject, ResponseObject> {
 
-    @Override
-    public void run() {
-        if (isRunnable()) {
-            process();
+    public void execute(ConcurrentHashMap<AbstractTask<RequestObject, ResponseObject>, Object> map, RequestObject request, CountDownLatch latch) {
+        try {
+            if (isRunnable(request)) {
+                map.put(this, process(request));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            latch.countDown();
         }
     }
 
+    public abstract String getName();
+
     public abstract long getTimeOfExecutionInMillis();
 
-    public abstract boolean isRunnable();
+    public abstract boolean isRunnable(RequestObject request);
 
-    public abstract void process();
+    public abstract ResponseObject process(RequestObject request);
 
 }

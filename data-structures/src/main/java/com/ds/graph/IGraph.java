@@ -15,5 +15,7 @@ public interface IGraph<Node> {
 
     Set<Edge<Node>> getAllEdges();
 
+    void deleteNode(Node node);
+
 
 }
