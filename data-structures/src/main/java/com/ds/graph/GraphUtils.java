@@ -43,9 +43,9 @@ public class GraphUtils {
      * @param <Node>
      * @return weight of min spanning tree
      */
-    public static <Node> Integer applyKruskal(IWeightedGraph<Node, Integer> graph) {
+    public static <Node> int applyKruskal(IWeightedGraph<Node, Integer> graph) {
         if (graph == null || graph.isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("Graph can't be null/empty");
         }
         Set<Node> visited = new HashSet<>();
         int minWeight = 0;
@@ -72,9 +72,9 @@ public class GraphUtils {
      * @param <Node>
      * @return weight of min spanning tree
      */
-    public static <Node> Integer applyPrims(IWeightedGraph<Node, Integer> graph) {
+    public static <Node> int applyPrims(IWeightedGraph<Node, Integer> graph) {
         if (graph == null || graph.isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("Graph can't be null/empty");
         }
         int minWeight = 0;
         WeightedEdge<Node, Integer> minWeightEdge = null;
@@ -244,6 +244,53 @@ public class GraphUtils {
             map.put(start, 2);
         }
         return false;
+    }
+
+    public static <Node> List<Node> applyTopologicalSort(IDirectedGraph<Node> graph) {
+        if (graph == null) {
+            return Collections.emptyList();
+        }
+        Map<Node, Integer> inDegree = new HashMap<>();
+        Node startNode = null;
+        for (Edge<Node> edge : graph.getAllEdges()) {
+            inDegree.put(edge.getFrom(), inDegree.getOrDefault(edge.getFrom(), 0));
+            inDegree.put(edge.getTo(), inDegree.getOrDefault(edge.getTo(), 0) + 1);
+            if (startNode == null) {
+                startNode = edge.getFrom();
+            } else {
+                if (inDegree.get(edge.getFrom()) < inDegree.get(startNode)) {
+                    startNode = edge.getFrom();
+                }
+            }
+        }
+        Stack<Node> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>();
+
+        topologicalHelper(visited, startNode, graph, stack);
+
+        Set<Node> nodes = graph.getAllNodes();
+        nodes.remove(startNode);
+        for (Node node : nodes) {
+            if (!visited.contains(node)) {
+                topologicalHelper(visited, node, graph, stack);
+            }
+        }
+
+        List<Node> topologicalSort = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            topologicalSort.add(stack.pop());
+        }
+
+        return topologicalSort;
+    }
+
+    private static <Node> void topologicalHelper(Set<Node> visited, Node node, final IDirectedGraph<Node> graph, Stack<Node> topologicalStack) {
+        if (visited.contains(node)) {
+            return;
+        }
+        visited.add(node);
+        graph.getNeighbours(node).forEach(neighbour -> topologicalHelper(visited, neighbour, graph, topologicalStack));
+        topologicalStack.add(node);
     }
 
 }
