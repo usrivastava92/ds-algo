@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GraphTestCases {
+public class TestGraphUtils {
 
     @Test
     public void topologicalSort() {
@@ -21,6 +21,7 @@ public class GraphTestCases {
         graph.addEdge(2, 3);
         graph.addEdge(2, 4);
         graph.addEdge(3, 4);
+
         Assert.assertEquals(GraphUtils.applyTopologicalSort(graph), Arrays.asList(0, 1, 2, 3, 4));
     }
 

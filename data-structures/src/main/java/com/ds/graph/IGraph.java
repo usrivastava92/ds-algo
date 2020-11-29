@@ -17,5 +17,4 @@ public interface IGraph<Node> {
 
     void deleteNode(Node node);
 
-
 }
