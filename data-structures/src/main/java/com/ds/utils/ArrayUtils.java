@@ -1,7 +1,9 @@
 package com.ds.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class ArrayUtils {
@@ -24,6 +26,25 @@ public class ArrayUtils {
 
     public static void printArr(int[][] arr) {
         Arrays.stream(arr).forEachOrdered(row -> System.out.println(Arrays.toString(row)));
+    }
+
+    public static List<List<Integer>> asList(int[][] arr) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            ans.add(new ArrayList<>());
+            for (int j = 0; j < arr[i].length; j++) {
+                ans.get(i).add(arr[i][j]);
+            }
+        }
+        return ans;
+    }
+
+    public static List<Character> asList(char[] arr) {
+        List<Character> ans = new ArrayList<>();
+        for (char ch : arr) {
+            ans.add(ch);
+        }
+        return ans;
     }
 
     public static String toString(int[][] arr) {

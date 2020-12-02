@@ -1,7 +1,6 @@
 package com.ds.graph;
 
 import com.ds.utils.NumberUtils;
-
 import java.util.*;
 
 public class GraphUtils {
@@ -291,6 +290,50 @@ public class GraphUtils {
         visited.add(node);
         graph.getNeighbours(node).forEach(neighbour -> topologicalHelper(visited, neighbour, graph, topologicalStack));
         topologicalStack.add(node);
+    }
+
+    public static void union(int[] parents, int i, int j) {
+        if (parents == null || i == j) {
+            return;
+        }
+        int parentI = find(parents, i);
+        int parentJ = find(parents, j);
+        if (parentI == parentJ) {
+            return;
+        }
+        parents[parentI] = parentJ;
+    }
+
+    public static int find(int[] parents, int node) {
+        if (parents == null) {
+            throw new IllegalArgumentException("parents array can't be null");
+        }
+        while (parents[node] != node) {
+            node = parents[node];
+        }
+        return node;
+    }
+
+    public static <Node> void union(Map<Node, Node> parents, Node i, Node j) {
+        if (parents == null || i.equals(j)) {
+            return;
+        }
+        Node parentI = find(parents, i);
+        Node parentJ = find(parents, j);
+        if (parentI.equals(parentJ)) {
+            return;
+        }
+        parents.put(parentI, parentJ);
+    }
+
+    public static <Node> Node find(Map<Node, Node> parents, Node node) {
+        if (parents == null || node == null) {
+            throw new IllegalArgumentException("parents map/node can't be null");
+        }
+        while (!parents.get(node).equals(node)) {
+            node = parents.get(node);
+        }
+        return node;
     }
 
 }

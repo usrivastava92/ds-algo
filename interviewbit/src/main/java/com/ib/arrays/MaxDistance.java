@@ -3,6 +3,7 @@ package com.ib.arrays;
 import org.junit.Assert;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class MaxDistance {
 
@@ -17,12 +18,22 @@ public class MaxDistance {
         if (A == null || A.length == 0) {
             return 0;
         }
-        Map<Integer, List<Integer>> indexMap = new HashMap<>();
+        Integer[] indexArr = new Integer[A.length];
         for (int i = 0; i < A.length; i++) {
-            List<Integer> indexes = indexMap.getOrDefault(A[i], new ArrayList<>());
-            indexMap.put(A[i], indexes);
+            indexArr[i] = i;
         }
-        return 1;
+        Arrays.sort(indexArr, Comparator.comparingInt(i -> A[i]));
+        System.out.println(Arrays.toString(A));
+        System.out.println(Arrays.toString(indexArr));
+        int currMin = indexArr[0];
+        int maxDiff = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (indexArr[i] > currMin) {
+                maxDiff = Math.max(maxDiff, Math.abs(indexArr[i] - currMin));
+            }
+            currMin = Math.min(currMin, indexArr[i]);
+        }
+        return maxDiff;
     }
 
 }

@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class NumberUtils {
 
+    public static final Random RANDOM = new Random();
+
     private NumberUtils() {
 
     }
@@ -23,8 +25,6 @@ public class NumberUtils {
     public static boolean isInRangeEndInclusive(int num, int startExclusive, int endInclusive) {
         return num > startExclusive && num <= endInclusive;
     }
-
-    public static final Random RANDOM = new Random();
 
     public static int getRandomInt() {
         return RANDOM.nextInt();
