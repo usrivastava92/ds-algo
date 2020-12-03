@@ -38,13 +38,13 @@ public class TreeUtils {
     }
 
 
-    public static String preorderTraversal(TreeNode node) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
+    public static List<Integer> preorderTraversal(TreeNode node) {
+        List<Integer> list = new ArrayList<>();
         if (node != null) {
             Deque<TreeNode> stack = new ArrayDeque<>();
             while (node != null || !stack.isEmpty()) {
                 while (node != null) {
-                    arrayList.add(node.val);
+                    list.add(node.val);
                     stack.push(node);
                     node = node.left;
                 }
@@ -52,7 +52,7 @@ public class TreeUtils {
                 node = node.right;
             }
         }
-        return arrayList.toString();
+        return list;
     }
 
     public static List<Integer> postorderTraversal(TreeNode node) {
@@ -82,7 +82,7 @@ public class TreeUtils {
             return Collections.emptyList();
         }
         List<Integer> traversal = new ArrayList<>();
-        Deque<TreeNode> stack = new ArrayDeque<>();
+        Stack<TreeNode> stack = new Stack<>();
         while (node != null || !stack.isEmpty()) {
             while (node != null) {
                 stack.push(node);

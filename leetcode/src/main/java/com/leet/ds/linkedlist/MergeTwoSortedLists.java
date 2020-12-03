@@ -6,45 +6,61 @@ public class MergeTwoSortedLists {
         ListNode l1 = LinkedListUtils.createList(1, 2, 4);
         ListNode l2 = LinkedListUtils.createList(1, 3, 4);
         MergeTwoSortedLists mergeTwoSortedLists = new MergeTwoSortedLists();
-        System.out.println(mergeTwoSortedLists.mergeTwoLists(l1, l2));
+        System.out.println(LinkedListUtils.getTraversal(mergeTwoSortedLists.mergeTwoLists(l1, l2)));
     }
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) {
             return null;
-        } else if (l1 == null || l2 == null) {
-            return l1 != null ? l1 : l2;
         }
-        ListNode head = null;
-        if (l1.val < l2.val) {
-            head = l1;
-            l1 = l1.next;
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        ListNode l1Pointer = l1;
+        ListNode l2Pointer = l2;
+        ListNode returnNode = null;
+        if (l1Pointer.val < l2Pointer.val) {
+            returnNode = l1Pointer;
+            l1Pointer = l1Pointer.next;
         } else {
-            head = l2;
-            l2 = l2.next;
+            returnNode = l2Pointer;
+            l2Pointer = l2Pointer.next;
         }
-        ListNode node = head;
-        while (l1 != null && l2 != null) {
-            if (l1.val < l2.val) {
-                node.next = l1;
-                l1 = l1.next;
+        ListNode curr = returnNode;
+        curr.next = null;
+        while (l1Pointer != null && l2Pointer != null) {
+            if (l1Pointer.val < l2Pointer.val) {
+                ListNode next = l1Pointer.next;
+                curr.next = l1Pointer;
+                curr = curr.next;
+                curr.next = null;
+                l1Pointer = next;
             } else {
-                node.next = l2;
-                l2 = l2.next;
+                ListNode next = l2Pointer.next;
+                curr.next = l2Pointer;
+                curr = curr.next;
+                curr.next = null;
+                l2Pointer = next;
             }
-            node = node.next;
         }
-        while (l1 != null) {
-            node.next = l1;
-            l1 = l1.next;
-            node = node.next;
+        while (l1Pointer != null) {
+            ListNode next = l1Pointer.next;
+            curr.next = l1Pointer;
+            curr = curr.next;
+            curr.next = null;
+            l1Pointer = next;
         }
-        while (l2 != null) {
-            node.next = l2;
-            l2 = l2.next;
-            node = node.next;
+        while (l2Pointer != null) {
+            ListNode next = l2Pointer.next;
+            curr.next = l2Pointer;
+            curr = curr.next;
+            curr.next = null;
+            l2Pointer = next;
         }
-        return head;
+        return returnNode;
     }
 
 }

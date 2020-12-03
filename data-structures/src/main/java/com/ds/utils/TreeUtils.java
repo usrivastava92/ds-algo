@@ -220,7 +220,7 @@ public class TreeUtils {
                 BinaryTreeNode<T> binaryTreeNode = (BinaryTreeNode<T>) poll;
                 queue.add(binaryTreeNode.getLeft() != null ? binaryTreeNode.getLeft() : nullNode);
                 queue.add(binaryTreeNode.getRight() != null ? binaryTreeNode.getRight() : nullNode);
-            } else{
+            } else {
                 poll.getChildren().forEach(child -> queue.add(child != null ? child : nullNode));
             }
         }

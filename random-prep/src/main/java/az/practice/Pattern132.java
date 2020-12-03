@@ -3,6 +3,7 @@ package az.practice;
 import org.junit.Assert;
 
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.TreeSet;
 import java.util.stream.IntStream;
 
@@ -25,21 +26,22 @@ public class Pattern132 {
             return false;
         }
         int len = nums.length;
-        int min = nums[0];
-        TreeSet<Integer> treeSet = new TreeSet<>();
-        for (int i = 1; i < len; i++) {
-            treeSet.add(nums[i]);
+        int[] mins = new int[len];
+        mins[0] = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            mins[i] = Math.min(mins[i - 1], nums[i]);
         }
-        for (int i = 1; i < len - 1; i++) {
-            int a = min;
-            int b = nums[i];
-            Integer minC = treeSet.higher(min);
-            Integer maxC = treeSet.lower(nums[i]);
-            if (a < b && minC != null && maxC != null && minC <= maxC) {
-                return true;
+        Stack<Integer> stack = new Stack<>();
+        for (int i = len - 1; i > 0; i--) {
+            if (nums[i] > mins[i]) {
+                while (!stack.isEmpty() && stack.peek() <= mins[i]) {
+                    stack.pop();
+                }
+                if (!stack.isEmpty() && stack.peek() < nums[i]) {
+                    return true;
+                }
+                stack.push(nums[i]);
             }
-            treeSet.remove(nums[i]);
-            min = Math.min(min, nums[i]);
         }
         return false;
     }

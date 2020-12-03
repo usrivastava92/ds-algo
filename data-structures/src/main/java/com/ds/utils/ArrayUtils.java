@@ -39,6 +39,17 @@ public class ArrayUtils {
         return ans;
     }
 
+    public static <T> List<List<T>> asList(T[][] arr) {
+        List<List<T>> ans = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            ans.add(new ArrayList<>());
+            for (int j = 0; j < arr[i].length; j++) {
+                ans.get(i).add(arr[i][j]);
+            }
+        }
+        return ans;
+    }
+
     public static List<Character> asList(char[] arr) {
         List<Character> ans = new ArrayList<>();
         for (char ch : arr) {
