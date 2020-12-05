@@ -47,20 +47,20 @@ public class GraphUtils {
         if (graph == null || graph.isEmpty()) {
             throw new IllegalArgumentException("Graph can't be null/empty");
         }
-        Set<Node> visited = new HashSet<>();
+        Map<Node, Node> map = new HashMap<>();
+        List<WeightedEdge<Node, Integer>> edges = new ArrayList<>(graph.getAllWeightedEdges());
+        edges.sort(Comparator.comparingInt(WeightedEdge::getWeight));
         int minWeight = 0;
-        PriorityQueue<WeightedEdge<Node, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(WeightedEdge::getWeight));
-        minHeap.addAll(graph.getAllWeightedEdges());
-        while (!minHeap.isEmpty()) {
-            WeightedEdge<Node, Integer> minEdge = minHeap.poll();
-            Node from = minEdge.getFrom();
-            Node to = minEdge.getTo();
-            Integer weight = minEdge.getWeight();
-            if (!visited.contains(from) || !visited.contains(to)) {
-                visited.add(from);
-                visited.add(to);
-                minWeight += weight;
+        for (WeightedEdge<Node, Integer> edge : edges) {
+            map.putIfAbsent(edge.getFrom(), edge.getFrom());
+            map.putIfAbsent(edge.getTo(), edge.getTo());
+            Node fromParent = find(map, edge.getFrom());
+            Node toParent = find(map, edge.getFrom());
+            if (fromParent.equals(toParent)) {
+                continue;
             }
+            minWeight += edge.getWeight();
+            union(map, edge.getFrom(), edge.getTo());
         }
         return minWeight;
     }
