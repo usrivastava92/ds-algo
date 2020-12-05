@@ -1,6 +1,7 @@
 package com.ds.graph;
 
 import com.ds.utils.NumberUtils;
+
 import java.util.*;
 
 public class GraphUtils {
@@ -304,6 +305,24 @@ public class GraphUtils {
         parents[parentI] = parentJ;
     }
 
+    public static void union(int[] parents, int i, int j, int[] ranks) {
+        if (parents == null || i == j) {
+            return;
+        }
+        int parentI = find(parents, i);
+        int parentJ = find(parents, j);
+        if (parentI == parentJ) {
+            return;
+        }
+        if (ranks[parentI] > ranks[parentJ]) {
+            parents[parentJ] = parentI;
+            ranks[parentI] = ranks[parentI] + ranks[parentJ];
+        } else {
+            parents[parentI] = parentJ;
+            ranks[parentJ] = ranks[parentI] + ranks[parentJ];
+        }
+    }
+
     public static int find(int[] parents, int node) {
         if (parents == null) {
             throw new IllegalArgumentException("parents array can't be null");
@@ -324,6 +343,24 @@ public class GraphUtils {
             return;
         }
         parents.put(parentI, parentJ);
+    }
+
+    public static <Node> void union(Map<Node, Node> parents, Node i, Node j, Map<Node, Integer> rankMap) {
+        if (parents == null || i.equals(j)) {
+            return;
+        }
+        Node parentI = find(parents, i);
+        Node parentJ = find(parents, j);
+        if (parentI.equals(parentJ)) {
+            return;
+        }
+        if (rankMap.get(parentI) > rankMap.get(parentJ)) {
+            parents.put(parentJ, parentI);
+            rankMap.put(parentI, rankMap.get(parentI) + rankMap.get(parentJ));
+        } else {
+            parents.put(parentI, parentJ);
+            rankMap.put(parentJ, rankMap.get(parentJ) + rankMap.get(parentI));
+        }
     }
 
     public static <Node> Node find(Map<Node, Node> parents, Node node) {
