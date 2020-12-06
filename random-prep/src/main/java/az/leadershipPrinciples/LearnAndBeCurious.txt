@@ -1,3 +1,28 @@
-5) Learn and Be Curious
-Leaders are never done learning and always seek to improve themselves.
-They are curious about new possibilities and act to explore them.
+5) Learn and Be Curious : Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.
+
+How do you stay inspired, acquire new knowledge, or innovate in your work?
+How do you keep up with best practices?
+How do you keep up with industry trends and what your competitors are doing?
+What have you learned that has helped you in your job?
+What is the coolest thing you’ve learned on your own that has helped you better perform your job?
+What is a recent book you’ve read and what did you learn from it?
+What are you working on to improve your overall effectiveness at work?
+Give me an example of a time when you challenged the notion that that something had to be done a certain way because it had always been done that way.
+Give me an example of a time when someone on your team challenged you to think differently about a problem. (Manager)
+Tell me about a time when you realized that you might have lost that fresh perspective. What ended up happening? (When we enter a new role or problem space, it is common to come in and see things with a fresh perspective.)
+Tell me about a time you learned something new from your peer or your direct report at work.
+Tell me about a time when you solved a problem through just superior knowledge or observation.
+Tell me about a time when you influenced a change by only asking questions.
+Tell me about a project that required you to learn something new.
+Tell me about a time you took on work outside of your comfort area and found it rewarding.
+Tell me about a time you found you needed a deeper level of subject matter expertise to do your job well.
+Tell me about a time you didn’t know what to do next or how to solve a challenging problem?
+Tell me about a time you hired someone smarter than you. (Manager)
+Tell me about a time when you challenged your team to push the envelope and go beyond existing standards and expectations. (Manager)
+
+Task :
+
+1) websockets for chat application
+2) bloom filter for finding if a user exists or not in a system
+
+Action : added Jasper report engine to CAS

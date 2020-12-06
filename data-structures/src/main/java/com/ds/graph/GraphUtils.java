@@ -10,30 +10,29 @@ public class GraphUtils {
     }
 
     public static <Node> Map<Node, Integer> applyDijkstra(IWeightedGraph<Node, Integer> graph, Node start) {
-        Map<Node, Integer> map = new HashMap<>();
-        map.put(start, 0);
-        PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(map::get));
+        Map<Node, Integer> minDistMap = new HashMap<>();
+        minDistMap.put(start, 0);
+        PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(minDistMap::get));
         minHeap.add(start);
         while (!minHeap.isEmpty()) {
             Node nearest = minHeap.poll();
             for (WeightedEdge<Node, Integer> neighbourEntry : graph.getNeighbouringWeightedEdges(nearest)) {
                 Node neighbour = neighbourEntry.getTo();
                 Integer weight = neighbourEntry.getWeight();
-                Integer currDist = map.get(neighbour);
+                boolean isVisited = minDistMap.containsKey(neighbour);
                 int minifiedWeight = -1;
-                if (currDist == null) {
-                    minifiedWeight = map.get(nearest) + weight;
+                if (isVisited) {
+                    minifiedWeight = Integer.min(minDistMap.get(nearest) + weight, minDistMap.get(neighbour));
                 } else {
-                    minifiedWeight = Integer.min(map.get(nearest) + weight, currDist);
+                    minifiedWeight = minDistMap.get(nearest) + weight;
                 }
-                boolean isVisited = map.containsKey(neighbour);
-                map.put(neighbour, minifiedWeight);
+                minDistMap.put(neighbour, minifiedWeight);
                 if (!isVisited) {
                     minHeap.add(neighbour);
                 }
             }
         }
-        return map;
+        return minDistMap;
     }
 
     /**

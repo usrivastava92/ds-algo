@@ -12,6 +12,10 @@ public class ArrayUtils {
 
     }
 
+    public static <T> void printArr(T[] arr) {
+        Arrays.stream(arr).forEachOrdered(System.out::println);
+    }
+
     public static void printArr(char[][] arr) {
         Arrays.stream(arr).forEachOrdered(row -> System.out.println(Arrays.toString(row)));
     }

@@ -12,7 +12,7 @@ public class MedianOfArray {
         medianOfArray.findMedianSortedArrays(Arrays.asList(arr1), Arrays.asList(arr2));
     }
 
-    public static double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
+    public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
         int len = a.size() + b.size();
         if (len % 2 == 1) {
             return findKthSmallest(a, 0, b, 0, len / 2 + 1);

@@ -1,38 +1,56 @@
 package com.ib.arrays;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import org.junit.Assert;
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class NextPermutation {
-    public void nextPermutation(ArrayList<Integer> a) {
-        int n = a.size();
-        int k = -1;
-        int l = 0;
-        for (int i = 0; i < n - 1; i++) {
-            if (a.get(i) < a.get(i + 1)) {
-                k = i;
+
+    public static void main(String[] args) {
+        int[][] inputs = {{1, 2, 3}, {3, 2, 1}, {1, 1, 5}, {20, 50, 113}, {1, 3, 8, 2, 4, 5}, {1, 3, 2, 8, 5, 4}, {1, 3, 8, 2, 6, 4, 2, 1}};
+        int[][] outputs = {{1, 3, 2}, {1, 2, 3}, {1, 5, 1}, {20, 113, 50}, {1, 3, 8, 2, 5, 4}, {1, 3, 4, 2, 5, 8}, {1, 3, 8, 4, 1, 2, 2, 6}};
+        NextPermutation nextPermutation = new NextPermutation();
+        IntStream.range(0, inputs.length).forEachOrdered(i -> {
+            System.out.println("Input -> " + Arrays.toString(inputs[i]));
+            int[] output = nextPermutation.nextPermutation(inputs[i]);
+            System.out.println("output : " + Arrays.toString(output));
+            Assert.assertArrayEquals(outputs[i], output);
+        });
+    }
+
+    public int[] nextPermutation(int[] A) {
+        if (A == null || A.length == 0) {
+            return new int[]{};
+        }
+        int len = A.length;
+        for (int i = len - 2; i > -1; i--) {
+            if (A[i] < A[i + 1]) {
+                int temp = i + 1;
+                while (temp + 1 < len && A[temp + 1] > A[i]) {
+                    temp++;
+                }
+                swap(A, i, temp);
+                reverse(A, i + 1, A.length - 1);
+                return A;
             }
         }
-        if (k == -1) {
-            Collections.sort(a);
-            return;
-        }
-        for (int i = k + 1; i < n; i++) {
-            if (a.get(i) > a.get(k)) {
-                l = i;
-            }
-        }
-        int temp = a.get(l);
-        a.set(l, a.get(k));
-        a.set(k, temp);
-        int j = k + 1;
-        int last = n - 1;
-        while (j <= last) {
-            temp = a.get(j);
-            a.set(j, a.get(last));
-            a.set(last, temp);
-            j++;
-            last--;
+        reverse(A, 0, A.length - 1);
+        return A;
+    }
+
+    private void reverse(int[] arr, int i, int j) {
+        while (i < j) {
+            swap(arr, i, j);
+            i++;
+            j--;
         }
     }
+
+    private void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
 }

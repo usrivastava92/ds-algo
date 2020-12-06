@@ -74,4 +74,29 @@ public class NumberUtils {
         return gcd(b, a % b);
     }
 
+    public static int max(int... mins) {
+        if (mins.length < 2) {
+            throw new IllegalArgumentException("args length can't be less than 2");
+        }
+        int max = Math.max(mins[0], mins[1]);
+        int len = mins.length;
+        for (int i = 2; i < len; i++) {
+            max = Math.max(max, mins[i]);
+        }
+        return max;
+    }
+
+
+    public static int min(int... mins) {
+        if (mins.length < 2) {
+            throw new IllegalArgumentException("args length can't be less than 2");
+        }
+        int min = Math.min(mins[0], mins[1]);
+        int len = mins.length;
+        for (int i = 2; i < len; i++) {
+            min = Math.min(min, mins[i]);
+        }
+        return min;
+    }
+
 }
