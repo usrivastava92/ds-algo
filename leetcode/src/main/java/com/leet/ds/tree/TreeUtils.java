@@ -1,6 +1,10 @@
 package com.leet.ds.tree;
 
+import com.ds.tree.BinaryTreeNode;
+import com.ds.utils.NumberUtils;
+
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class TreeUtils {
 
@@ -219,6 +223,18 @@ public class TreeUtils {
             return 0;
         }
         return 1 + Math.max(getHeight(root.left), getHeight(root.right));
+    }
+
+    public static TreeNode createRandomBST(int numberOfNodes) {
+        return createRandomBST(numberOfNodes, 10, 100);
+    }
+
+    public static TreeNode createRandomBST(int numberOfNodes, int lowerLimitInclusive, int upperLimitInclusive) {
+        if (numberOfNodes <= 0)
+            return null;
+        TreeNode head = new TreeNode(NumberUtils.getRandomInt(lowerLimitInclusive, upperLimitInclusive));
+        IntStream.generate(() -> NumberUtils.getRandomInt(lowerLimitInclusive, upperLimitInclusive)).limit(numberOfNodes - 1).forEach(i -> insertInBST(head, i));
+        return head;
     }
 
 }

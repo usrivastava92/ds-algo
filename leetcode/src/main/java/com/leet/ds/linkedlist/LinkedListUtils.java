@@ -8,7 +8,7 @@ import java.util.Set;
 public class LinkedListUtils {
 
     public static ListNode get(ListNode head, int index) {
-        if (index >= size(head)) {
+        if (index >= lengthOf(head)) {
             throw new IllegalArgumentException("Invalid index : " + index);
         }
         int i = 0;
@@ -22,7 +22,7 @@ public class LinkedListUtils {
         return null;
     }
 
-    public static int size(ListNode head) {
+    public static int lengthOf(ListNode head) {
         int size = 0;
         Set<ListNode> set = new HashSet<>();
         while (head != null) {

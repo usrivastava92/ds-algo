@@ -6,11 +6,8 @@ public class MergeTwoSortedLists {
         MergeTwoSortedLists mergeTwoSortedLists = new MergeTwoSortedLists();
         ListNode m1 = LinkedListUtils.generateLinkedList(2, 4, 7, 9);
         ListNode l1 = LinkedListUtils.generateLinkedList(1, 4, 6, 8);
-
         LinkedListUtils.printLinkedList(m1);
-        ListNode ln = mergeTwoSortedLists.mergeTwoLists(l1, m1);
-
-
+        ListNode node = mergeTwoSortedLists.mergeTwoLists(l1, m1);
     }
 
     public ListNode mergeTwoLists(ListNode A, ListNode B) {

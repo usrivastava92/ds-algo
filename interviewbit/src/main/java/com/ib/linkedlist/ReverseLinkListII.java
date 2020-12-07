@@ -11,8 +11,8 @@ public class ReverseLinkListII {
     public ListNode reverseBetween(ListNode A, int B, int C) {
         ListNode prev = null;
         ListNode curr = A;
-        int i = 0;
-        while (i++ < B - 1) {
+        int i = B - 1;
+        while (i-- > 0) {
             prev = curr;
             curr = curr.next;
         }
@@ -35,6 +35,7 @@ public class ReverseLinkListII {
             prev = curr;
             curr = temp;
         }
+        assert start != null;
         start.next = curr;
         return prev;
     }
