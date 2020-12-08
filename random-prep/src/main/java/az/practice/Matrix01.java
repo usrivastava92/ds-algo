@@ -15,7 +15,8 @@ public class Matrix01 {
         ArrayUtils.printArr(outputs[0]);
         System.out.println("#######################");
         ArrayUtils.printArr(matrix01.updateMatrix(inputs[2]));
-        Assert.assertArrayEquals(outputs[0],matrix01.updateMatrix(inputs[2]));
+        System.out.println("#######################");
+        Assert.assertArrayEquals(outputs[0], matrix01.updateMatrix(inputs[2]));
     }
 
     public int[][] updateMatrix(int[][] matrix) {
@@ -25,54 +26,34 @@ public class Matrix01 {
         int n = matrix.length;
         int m = matrix[0].length;
         int[][] ans = new int[n][m];
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                ans[i][j] = minDist(matrix, i, j);
+                if (matrix[i][j] == 1) {
+                    int min = Integer.MAX_VALUE - 1;
+                    if (i - 1 > -1) {
+                        min = Math.min(min, ans[i - 1][j]);
+                    }
+                    if (j - 1 > -1) {
+                        min = Math.min(min, ans[i][j - 1]);
+                    }
+                    ans[i][j] = 1 + min;
+                }
             }
         }
-        return ans;
-    }
-
-
-    public int minDist(int[][] m, int i, int j) {
-        if (m[i][j] == 0) {
-            return 0;
-        }
-        int dist = 0;
-        while (i + dist < m.length && i - dist > -1 && j + dist < m[0].length && j - dist > -1) {
-            if (m[i + dist][j] == 0 || m[i - dist][j] == 0 || m[i][j + dist] == 0 || m[i][j - dist] == 0) {
-                return dist;
+        for (int i = n - 1; i > -1; i--) {
+            for (int j = m - 1; j > -1; j--) {
+                if (matrix[i][j] == 1) {
+                    int min = Integer.MAX_VALUE - 1;
+                    if (i + 1 < n) {
+                        min = Math.min(min, ans[i + 1][j]);
+                    }
+                    if (j + 1 < m) {
+                        min = Math.min(min, ans[i][j + 1]);
+                    }
+                    ans[i][j] = Math.min(ans[i][j], 1 + min);
+                }
             }
-            dist++;
-        }
-        int temp = dist;
-        int ans = Integer.MAX_VALUE;
-        while (i + temp < m.length) {
-            if (m[i + temp][j] == 0) {
-                ans = Math.min(temp, ans);
-            }
-            temp++;
-        }
-        temp = dist;
-        while (i - temp > -1 && temp < ans) {
-            if (m[i - temp][j] == 0) {
-                ans = Math.min(temp, ans);
-            }
-            temp++;
-        }
-        temp = dist;
-        while (j + temp < m[0].length && temp < ans) {
-            if (m[i][j + temp] == 0) {
-                ans = Math.min(temp, ans);
-            }
-            temp++;
-        }
-        temp = dist;
-        while (j - temp > -1 && temp < ans) {
-            if (m[i][j - temp] == 0) {
-                ans = Math.min(temp, ans);
-            }
-            temp++;
         }
         return ans;
     }
