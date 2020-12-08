@@ -374,29 +374,29 @@ public class GraphUtils {
 
     public static <Node> List<Edge<Node>> getCriticalEdges(IUndirectedGraph<Node> graph) {
         List<Edge<Node>> ans = new ArrayList<>();
-        Map<Node, Integer> discoveryTime = new HashMap<>();
+        Set<Node> visited = new HashSet<>();
         Map<Node, Integer> lows = new HashMap<>();
         int[] timer = new int[1];
         for (Node node : graph.getAllNodes()) {
-            if (!discoveryTime.containsKey(node)) {
-                dfsForCriticalEdges(graph, timer, lows, discoveryTime, ans, node, null);
+            if (!visited.contains(node)) {
+                dfsForCriticalEdges(graph, timer, lows, visited, ans, node, null);
             }
         }
         return ans;
     }
 
-    private static <Node> void dfsForCriticalEdges(IUndirectedGraph<Node> graph, int[] timer, Map<Node, Integer> lows, Map<Node, Integer> discoveryTime, List<Edge<Node>> ans, Node node, Node parent) {
-        discoveryTime.put(node, ++timer[0]);
-        lows.put(node, discoveryTime.get(node));
+    private static <Node> void dfsForCriticalEdges(IUndirectedGraph<Node> graph, int[] timer, Map<Node, Integer> lows, Set<Node> visited, List<Edge<Node>> ans, Node node, Node parent) {
+        lows.put(node, timer[0]++);
+        int currentTime = lows.get(node);
         for (Node child : graph.getNeighbours(node)) {
-            if (!discoveryTime.containsKey(child)) {
-                dfsForCriticalEdges(graph, timer, lows, discoveryTime, ans, child, node);
+            if (!child.equals(parent)) {
+                if (!visited.contains(child)) {
+                    dfsForCriticalEdges(graph, timer, lows, visited, ans, child, node);
+                }
                 lows.put(node, Math.min(lows.get(child), lows.get(node)));
-                if (lows.get(child) > lows.get(node)) {
+                if (lows.get(child) > currentTime) {
                     ans.add(new Edge<>(node, child));
                 }
-            } else if (!child.equals(parent)) {
-                lows.put(node, Math.min(lows.get(child), lows.get(node)));
             }
         }
     }
