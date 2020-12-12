@@ -1,4 +1,4 @@
-package com.leet.daysofcode.december.week1;
+package com.leet.daysofcode.december.week2;
 
 import org.junit.Assert;
 
