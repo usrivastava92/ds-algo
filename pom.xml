@@ -32,6 +32,7 @@
                 <module>./geeksforgeeks</module>
                 <module>./interviewbit</module>
                 <module>./leetcode</module>
+                <module>./codeforces</module>
             </modules>
         </profile>
     </profiles>

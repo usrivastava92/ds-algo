@@ -1,7 +1,6 @@
 package com.leet.daysofcode.november.week5;
 
 import com.ds.utils.ArrayUtils;
-import org.apache.poi.ss.formula.functions.T;
 import org.junit.Assert;
 
 import java.util.*;
@@ -15,7 +14,7 @@ public class TheSkylineProblem {
         TheSkylineProblem theSkylineProblem = new TheSkylineProblem();
         List<List<Integer>> output = theSkylineProblem.getSkyline(input);
         System.out.println("Output : " + output);
-        Assert.assertEquals(ArrayUtils.asList(expected), output);
+        Assert.assertEquals(ArrayUtils.deepAsList(expected), output);
     }
 
     public List<List<Integer>> getSkyline(int[][] buildings) {

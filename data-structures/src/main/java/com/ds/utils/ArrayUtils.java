@@ -32,7 +32,7 @@ public class ArrayUtils {
         Arrays.stream(arr).forEachOrdered(row -> System.out.println(Arrays.toString(row)));
     }
 
-    public static List<List<Integer>> asList(int[][] arr) {
+    public static List<List<Integer>> deepAsList(int[][] arr) {
         List<List<Integer>> ans = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             ans.add(new ArrayList<>());
@@ -43,7 +43,7 @@ public class ArrayUtils {
         return ans;
     }
 
-    public static <T> List<List<T>> asList(T[][] arr) {
+    public static <T> List<List<T>> deepAsList(T[][] arr) {
         List<List<T>> ans = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             ans.add(new ArrayList<>());
@@ -54,7 +54,7 @@ public class ArrayUtils {
         return ans;
     }
 
-    public static List<Character> asList(char[] arr) {
+    public static List<Character> deepAsList(char[] arr) {
         List<Character> ans = new ArrayList<>();
         for (char ch : arr) {
             ans.add(ch);

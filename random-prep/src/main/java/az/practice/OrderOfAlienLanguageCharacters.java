@@ -1,8 +1,7 @@
 package az.practice;
 
 import com.ds.graph.DirectedUnweightedGraph;
-import com.ds.graph.GraphUtils;
-import com.ds.graph.IDirectedGraph;
+import com.ds.utils.GraphUtils;
 import com.ds.utils.ArrayUtils;
 import org.junit.Assert;
 
@@ -19,7 +18,7 @@ public class OrderOfAlienLanguageCharacters {
             System.out.println("Input : " + Arrays.toString(inputs[i]));
             List<Character> output = orderOfAlienLanguageCharacters.solve(inputs[i]);
             System.out.println("Output : " + output);
-            Assert.assertEquals(ArrayUtils.asList(outputs[i]), output);
+            Assert.assertEquals(ArrayUtils.deepAsList(outputs[i]), output);
         });
     }
 

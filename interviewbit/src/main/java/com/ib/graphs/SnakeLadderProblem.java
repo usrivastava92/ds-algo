@@ -1,7 +1,5 @@
 package com.ib.graphs;
 
-import com.ds.graph.DirectedWeightedGraph;
-import com.ds.graph.GraphUtils;
 import org.junit.Assert;
 
 import java.util.*;

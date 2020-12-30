@@ -1,5 +1,6 @@
 package com.ds.graph;
 
+import com.ds.utils.GraphUtils;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <artifactId>coding-parent</artifactId>
-    <groupId>com.coding</groupId>
+    <parent>
+        <artifactId>coding-parent</artifactId>
+        <groupId>com.coding</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.codeforces</groupId>
+    <artifactId>codeforces</artifactId>
     <version>1.0</version>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
 
-  <groupId>com.codeforces</groupId>
-  <artifactId>codeforces</artifactId>
-  <version>1.0</version>
-
-  <dependencies></dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.ds</groupId>
+            <artifactId>data-structures</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

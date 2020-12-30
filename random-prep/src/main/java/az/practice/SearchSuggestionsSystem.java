@@ -21,7 +21,7 @@ public class SearchSuggestionsSystem {
             List<List<String>> output = searchSuggestionsSystem.suggestedProducts(products[i], searchWords[i]);
             System.out.println("Output : " + output);
             System.out.println("Expected : " + Arrays.deepToString(outputs[i]));
-            Assert.assertEquals(ArrayUtils.asList(outputs[i]), output);
+            Assert.assertEquals(ArrayUtils.deepAsList(outputs[i]), output);
         });
     }
 

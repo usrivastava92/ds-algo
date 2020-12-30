@@ -5,7 +5,6 @@ import java.util.Collection;
 public class CollectionUtils {
 
     private CollectionUtils() {
-
     }
 
     public static <T> boolean isValidIndex(Collection<T> collection, int index) {

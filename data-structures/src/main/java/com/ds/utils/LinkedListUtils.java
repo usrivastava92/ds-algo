@@ -9,8 +9,7 @@ import java.util.Optional;
 
 public class LinkedListUtils {
 
-    private LinkedListUtils(){
-
+    private LinkedListUtils() {
     }
 
     public static <T extends Comparable<T>> LinkedListNode<T> sort(LinkedListNode<T> head) {
@@ -21,7 +20,7 @@ public class LinkedListUtils {
         if (head == null || head.next == null) {
             return head;
         }
-        int len = lengthOf(head);
+        int len = length(head);
         for (int i = 2; i <= len; i *= 2) {
             for (int j = 1; j <= len; j += i) {
 
@@ -87,7 +86,7 @@ public class LinkedListUtils {
         }
     }
 
-    public static <T> int lengthOf(LinkedListNode<T> node) {
+    public static <T> int length(LinkedListNode<T> node) {
         int len = 0;
         while (node != null) {
             len++;

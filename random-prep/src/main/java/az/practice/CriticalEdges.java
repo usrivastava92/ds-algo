@@ -1,6 +1,6 @@
 package az.practice;
 
-import com.ds.graph.GraphUtils;
+import com.ds.utils.GraphUtils;
 import com.ds.graph.UndirectedUnweightedGraph;
 
 public class CriticalEdges {

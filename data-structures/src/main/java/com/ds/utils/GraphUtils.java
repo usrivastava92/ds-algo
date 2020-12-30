@@ -1,6 +1,6 @@
-package com.ds.graph;
+package com.ds.utils;
 
-import com.ds.utils.NumberUtils;
+import com.ds.graph.*;
 
 import java.util.*;
 

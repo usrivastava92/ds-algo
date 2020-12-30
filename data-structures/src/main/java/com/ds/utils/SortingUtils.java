@@ -6,8 +6,7 @@ import java.util.List;
 
 public class SortingUtils {
 
-    private SortingUtils(){
-
+    private SortingUtils() {
     }
 
     public static <T extends Comparable<T>> void bubbleSort(List<T> list) {
