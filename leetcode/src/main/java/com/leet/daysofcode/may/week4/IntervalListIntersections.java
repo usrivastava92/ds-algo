@@ -1,64 +1,61 @@
 package com.leet.daysofcode.may.week4;
 
-import com.ds.utils.ArrayUtils;
+import com.ds.utils.TreeUtils;
+import org.junit.Assert;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class IntervalListIntersections {
 
     public static void main(String[] args) {
+        int[][][] A = {{{0, 2}, {5, 10}, {13, 23}, {24, 25}}};
+        int[][][] B = {{{1, 5}, {8, 12}, {15, 24}, {25, 26}}};
+        int[][][] outputs = {{{1, 2}, {5, 5}, {8, 10}, {15, 23}, {24, 24}, {25, 25}}};
         IntervalListIntersections intervalListIntersections = new IntervalListIntersections();
-        int[][] A = new int[][]{new int[]{0, 2}, new int[]{5, 10}, new int[]{13, 23}, new int[]{24, 25}};
-        int[][] B = new int[][]{new int[]{1, 5}, new int[]{8, 12}, new int[]{15, 24}, new int[]{25, 26}};
-        ArrayUtils.printArr(intervalListIntersections.intervalIntersection(A, B));
+        IntStream.range(0, A.length).forEachOrdered(i -> {
+            System.out.println("Input : \nA : " + Arrays.deepToString(A[i]) + " \nB : " + Arrays.deepToString(B[i]));
+            int[][] output = intervalListIntersections.intervalIntersection(A[i], B[i]);
+            System.out.println("Output : " + Arrays.deepToString(output));
+            Assert.assertArrayEquals(outputs[i], output);
+        });
     }
 
 
     public int[][] intervalIntersection(int[][] A, int[][] B) {
-        List<int[]> list = new ArrayList<>();
+        if (A == null || B == null || A.length == 0 || B.length == 0) {
+            return new int[][]{};
+        }
+        List<int[]> ans = new ArrayList<>();
         int i = 0;
         int j = 0;
-        int aSize = A.length;
-        int bSize = B.length;
-        while (i < aSize && j < bSize) {
-            int aStartTime = A[i][0];
-            int aEndTime = A[i][1];
-            int bStartTime = B[j][0];
-            int bEndTime = B[j][1];
-            if (bStartTime > aEndTime) {
-                i++;
-            } else if (aStartTime > bEndTime) {
+        int aLen = A.length;
+        int bLen = B.length;
+        while (i < aLen && j < bLen) {
+            int aStart = A[i][0];
+            int aEnd = A[i][1];
+            int bStart = B[j][0];
+            int bEnd = B[j][1];
+            if (aStart > bEnd) {
                 j++;
+            } else if (bStart > aEnd) {
+                i++;
             } else {
-                int[] overlap = new int[2];
-                if (aStartTime < bStartTime) {
-                    overlap[0] = bStartTime;
-                    if (aEndTime < bEndTime) {
-                        overlap[1] = aEndTime;
-                        i++;
-                    } else {
-                        overlap[1] = bEndTime;
-                        j++;
-                    }
+                int[] intersection = new int[2];
+                intersection[0] = Math.max(aStart, bStart);
+                if (aEnd < bEnd) {
+                    intersection[1] = aEnd;
+                    i++;
                 } else {
-                    overlap[0] = aStartTime;
-                    if (aEndTime < bEndTime) {
-                        i++;
-                        overlap[1] = aEndTime;
-                    } else {
-                        j++;
-                        overlap[1] = bEndTime;
-                    }
+                    intersection[1] = bEnd;
+                    j++;
                 }
-                list.add(overlap);
+                ans.add(intersection);
             }
         }
-        int[][] ans = new int[list.size()][2];
-        for (int x = 0, len = list.size(); x < len; x++) {
-            ans[x] = list.get(x);
-        }
-        return ans;
+        return ans.toArray(new int[ans.size()][]);
     }
 
 }

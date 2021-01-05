@@ -249,27 +249,10 @@ public class GraphUtils {
         if (graph == null) {
             return Collections.emptyList();
         }
-        Map<Node, Integer> inDegree = new HashMap<>();
-        Node startNode = null;
-        for (Edge<Node> edge : graph.getAllEdges()) {
-            inDegree.put(edge.getFrom(), inDegree.getOrDefault(edge.getFrom(), 0));
-            inDegree.put(edge.getTo(), inDegree.getOrDefault(edge.getTo(), 0) + 1);
-            if (startNode == null) {
-                startNode = edge.getFrom();
-            } else {
-                if (inDegree.get(edge.getFrom()) < inDegree.get(startNode)) {
-                    startNode = edge.getFrom();
-                }
-            }
-        }
         Stack<Node> stack = new Stack<>();
         Set<Node> visited = new HashSet<>();
 
-        topologicalHelper(visited, startNode, graph, stack);
-
-        Set<Node> nodes = graph.getAllNodes();
-        nodes.remove(startNode);
-        for (Node node : nodes) {
+        for (Node node : graph.getAllNodes()) {
             if (!visited.contains(node)) {
                 topologicalHelper(visited, node, graph, stack);
             }
@@ -288,7 +271,9 @@ public class GraphUtils {
             return;
         }
         visited.add(node);
-        graph.getNeighbours(node).forEach(neighbour -> topologicalHelper(visited, neighbour, graph, topologicalStack));
+        for (Node neighbour : graph.getNeighbours(node)) {
+            topologicalHelper(visited, neighbour, graph, topologicalStack);
+        }
         topologicalStack.add(node);
     }
 

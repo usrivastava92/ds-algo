@@ -21,6 +21,8 @@ public class NestedIntegerIterator {
         while (nestedIterator.hasNext()) {
             System.out.println(nestedIterator.next());
         }
+        List<int[]> ans = new ArrayList<>();
+
     }
 
 }
@@ -65,7 +67,7 @@ class NestedIntegerImpl implements NestedInteger {
 
 class NestedIterator implements Iterator<Integer> {
 
-    private List<NestedInteger> nestedList;
+    private final List<NestedInteger> nestedList;
     private NestedIterator nestedIterator;
     private int index;
 
@@ -98,12 +100,12 @@ class NestedIterator implements Iterator<Integer> {
         if (nestedIterator == null) {
             nestedIterator = new NestedIterator(nestedList.get(index).getList());
         }
-        while (!nestedIterator.hasNext()) {
-            index++;
-            nestedIterator = null;
-            return hasNext();
+        if (nestedIterator.hasNext()) {
+            return true;
         }
-        return true;
+        nestedIterator = null;
+        this.index++;
+        return hasNext();
     }
 }
 
