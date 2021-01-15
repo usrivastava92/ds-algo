@@ -270,6 +270,49 @@ public class TreeUtils {
         }
     }
 
+    public static <T extends Comparable<T>> void prettyPrintTreeWithToString(BinaryTreeNode<T> root) {
+        if (root == null) {
+            return;
+        }
+        int height = getHeight(root);
+        int[] space = new int[height];
+        space[height - 1] = 0;
+        for (int i = height - 2; i > -1; i--) {
+            int prev = i + 1;
+            space[i] = (2 * space[prev]) + 1;
+        }
+        Deque<BinaryTreeNode<T>> queue = new LinkedList<>();
+        queue.add(root);
+        String blank = StringUtils.repeat(' ', String.valueOf(root).length());
+        List<List<String>> printList = new ArrayList<>();
+        IntStream.range(0, height).forEachOrdered(i -> {
+            List<String> level = new ArrayList<>();
+            addNElementsInList(level, space[i], blank);
+            int len = queue.size();
+            IntStream.range(0, len).forEachOrdered(j -> {
+                BinaryTreeNode<T> poll = queue.poll();
+                if (poll == null) {
+                    level.add(blank);
+                    queue.add(null);
+                    queue.add(null);
+                } else {
+                    level.add(poll.toString());
+                    queue.add(poll.getLeft());
+                    queue.add(poll.getRight());
+                }
+                int prev = i - 1;
+                if (j != len - 1 && prev > -1) {
+                    addNElementsInList(level, space[prev], blank);
+                }
+            });
+            addNElementsInList(level, space[i], blank);
+            printList.add(level);
+        });
+        for (List<String> lev : printList) {
+            System.out.println(String.join("", lev));
+        }
+    }
+
     private static <T extends Comparable<T>> void addNElementsInList(List<T> list, int times, T element) {
         IntStream.range(0, times).forEach(i -> list.add(element));
     }
