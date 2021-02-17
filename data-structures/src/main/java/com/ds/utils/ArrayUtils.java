@@ -118,12 +118,61 @@ public class ArrayUtils {
         return IntStream.generate(() -> NumberUtils.getRandomInt(lowerLimit, upperLimit)).limit(size).boxed().toArray(Integer[]::new);
     }
 
-    public static boolean isValidIndex(int[] arr, int index) {
-        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
-    }
-
-    public static <T> boolean isValidIndex(T[] arr, int index) {
-        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    public static boolean isValidIndex(Object[] arr, int... indexes) {
+        Object obj = null;
+        for (int i = 0; i < indexes.length; i++) {
+            int index = indexes[i];
+            if (!NumberUtils.isInRangeStartInclusive(index, 0, arr.length)) {
+                return false;
+            }
+            obj = arr[index];
+            if (obj instanceof Object[]) {
+                arr = (Object[]) obj;
+            } else if (obj instanceof byte[]) {
+                if (!isValidIndex((byte[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof short[]) {
+                if (!isValidIndex((short[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof int[]) {
+                if (!isValidIndex((int[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof long[]) {
+                if (!isValidIndex((long[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof char[]) {
+                if (!isValidIndex((char[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof float[]) {
+                if (!isValidIndex((float[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof double[]) {
+                if (!isValidIndex((double[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else if (obj instanceof boolean[]) {
+                if (!isValidIndex((boolean[]) obj, indexes[i + 1])) {
+                    return false;
+                }
+                break;
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static <T> void swap(T[] arr, int index1, int index2) {
@@ -141,4 +190,37 @@ public class ArrayUtils {
             arr[index2] = temp;
         }
     }
+
+    public static boolean isValidIndex(int[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(boolean[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(double[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(float[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(char[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(long[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(short[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
+    public static boolean isValidIndex(byte[] arr, int index) {
+        return NumberUtils.isInRangeStartInclusive(index, 0, arr.length);
+    }
+
 }
