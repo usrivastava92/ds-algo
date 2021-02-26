@@ -20,7 +20,7 @@ public class GraphUtils {
                 Node neighbour = neighbourEntry.getTo();
                 Integer weight = neighbourEntry.getWeight();
                 boolean isVisited = minDistMap.containsKey(neighbour);
-                int minifiedWeight = -1;
+                int minifiedWeight;
                 if (isVisited) {
                     minifiedWeight = Integer.min(minDistMap.get(nearest) + weight, minDistMap.get(neighbour));
                 } else {
@@ -38,8 +38,8 @@ public class GraphUtils {
     /**
      * This method returns weight for min spanning tree, it is implemented using Kruskal's algorithm
      *
-     * @param graph
-     * @param <Node>
+     * @param graph weighted graph
+     * @param <Node> value contained in a graph node
      * @return weight of min spanning tree
      */
     public static <Node> int applyKruskal(IWeightedGraph<Node, Integer> graph) {
@@ -67,8 +67,8 @@ public class GraphUtils {
     /**
      * This method returns weight for min spanning tree, it is implemented using Prim's algorithm
      *
-     * @param graph
-     * @param <Node>
+     * @param graph weighted graph
+     * @param <Node> value contained in a graph node
      * @return weight of min spanning tree
      */
     public static <Node> int applyPrims(IWeightedGraph<Node, Integer> graph) {
@@ -247,7 +247,7 @@ public class GraphUtils {
 
     public static <Node> List<Node> applyTopologicalSort(IDirectedGraph<Node> graph) {
         if (graph == null) {
-            return Collections.emptyList();
+            throw new IllegalArgumentException("graph can't be null");
         }
         Stack<Node> stack = new Stack<>();
         Set<Node> visited = new HashSet<>();
@@ -358,29 +358,29 @@ public class GraphUtils {
     }
 
     public static <Node> List<Edge<Node>> getCriticalEdges(IUndirectedGraph<Node> graph) {
-        List<Edge<Node>> ans = new ArrayList<>();
+        List<Edge<Node>> criticalEdges = new ArrayList<>();
         Set<Node> visited = new HashSet<>();
         Map<Node, Integer> lows = new HashMap<>();
         int[] timer = new int[1];
         for (Node node : graph.getAllNodes()) {
             if (!visited.contains(node)) {
-                dfsForCriticalEdges(graph, timer, lows, visited, ans, node, null);
+                dfsForCriticalEdges(graph, timer, lows, visited, criticalEdges, node, null);
             }
         }
-        return ans;
+        return criticalEdges;
     }
 
-    private static <Node> void dfsForCriticalEdges(IUndirectedGraph<Node> graph, int[] timer, Map<Node, Integer> lows, Set<Node> visited, List<Edge<Node>> ans, Node node, Node parent) {
+    private static <Node> void dfsForCriticalEdges(IUndirectedGraph<Node> graph, int[] timer, Map<Node, Integer> lows, Set<Node> visited, List<Edge<Node>> criticalEdges, Node node, Node parent) {
         lows.put(node, timer[0]++);
         int currentTime = lows.get(node);
         for (Node child : graph.getNeighbours(node)) {
             if (!child.equals(parent)) {
                 if (!visited.contains(child)) {
-                    dfsForCriticalEdges(graph, timer, lows, visited, ans, child, node);
+                    dfsForCriticalEdges(graph, timer, lows, visited, criticalEdges, child, node);
                 }
                 lows.put(node, Math.min(lows.get(child), lows.get(node)));
                 if (lows.get(child) > currentTime) {
-                    ans.add(new Edge<>(node, child));
+                    criticalEdges.add(new Edge<>(node, child));
                 }
             }
         }

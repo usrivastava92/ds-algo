@@ -17,6 +17,12 @@
     <properties>
     </properties>
 
-    <dependencies></dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.ds</groupId>
+            <artifactId>data-structures</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 
 </project>
