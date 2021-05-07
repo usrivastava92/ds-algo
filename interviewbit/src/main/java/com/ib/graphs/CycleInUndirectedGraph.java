@@ -1,7 +1,5 @@
 package com.ib.graphs;
 
-import javafx.util.Pair;
-
 import java.util.*;
 import java.util.stream.IntStream;
 
