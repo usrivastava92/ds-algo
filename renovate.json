@@ -3,5 +3,6 @@
     "config:base"
   ],
   "automerge": true,
-  "automergeType": "branch"
+  "automergeType": "branch",
+  "rebaseWhen" : "auto"
 }
