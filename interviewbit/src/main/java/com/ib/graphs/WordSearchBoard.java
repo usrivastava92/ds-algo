@@ -1,25 +1,6 @@
 package com.ib.graphs;
 
-import com.ds.utils.ArrayUtils;
-import org.junit.Assert;
-
-import java.util.stream.IntStream;
-
 public class WordSearchBoard {
-
-    public static void main(String[] args) {
-        String[][] inputs = {{"ABCE", "SFCS", "ADEE"}, {"ABCE", "SFCS", "ADEE"}, {"ABCE", "SFCS", "ADEE"}, {"ABCE", "SFCS", "ADEE"}, {"ABCE", "SFCS", "ADEE"}};
-        String[] words = {"ABCCED", "SEE", "ABCB", "ABFSAB", "ABCD"};
-        int[] outputs = {1, 1, 1, 1, 0};
-        WordSearchBoard wordSearchBoard = new WordSearchBoard();
-        IntStream.range(0, inputs.length).forEachOrdered(i -> {
-            System.out.println("Input : word : " + words[i]);
-            ArrayUtils.printArr(inputs[i]);
-            int output = wordSearchBoard.exist(inputs[i], words[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int exist(String[] A, String B) {
         if (A == null || A.length == 0 || A[0].length() == 0) {

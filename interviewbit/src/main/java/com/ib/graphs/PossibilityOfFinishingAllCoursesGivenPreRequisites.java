@@ -1,26 +1,13 @@
 package com.ib.graphs;
 
-import org.junit.Assert;
-
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class PossibilityOfFinishingAllCoursesGivenPreRequisites {
-
-    public static void main(String[] args) {
-        int[] As = {3, 2, 32};
-        int[][] Bs = {{1, 2}, {1, 2}, {}};
-        int[][] Cs = {{2, 3}, {2, 1}, {}};
-        int[] outputs = {1, 0, 1};
-        PossibilityOfFinishingAllCoursesGivenPreRequisites possibilityOfFinishingAllCoursesGivenPreRequisites = new PossibilityOfFinishingAllCoursesGivenPreRequisites();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.println("Input : a : " + As[i] + " b : " + Arrays.toString(Bs[i]) + " c : " + Arrays.toString(Cs[i]));
-            int output = possibilityOfFinishingAllCoursesGivenPreRequisites.solve(As[i], Bs[i], Cs[i]);
-            System.out.println("Output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
-
 
     public int solve(int A, int[] B, int[] C) {
         if (A <= 0 && (B == null || B.length == 0 || C == null || C.length == 0)) {

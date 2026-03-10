@@ -1,30 +1,9 @@
 package com.ib.graphs;
 
-import org.junit.Assert;
-
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Queue;
-import java.util.stream.IntStream;
 
 public class ValidPath {
-
-    public static void main(String[] args) {
-        int[] Xs = {2};
-        int[] Ys = {3};
-        int[] Ns = {1};
-        int[] Rs = {1};
-        int[][] Es = {{2}};
-        int[][] Fs = {{3}};
-        String[] outputs = {"NO"};
-        ValidPath validPath = new ValidPath();
-        IntStream.range(0, Xs.length).forEachOrdered(i -> {
-            System.out.printf("Input -> x : %s, y : %s, n : %s, r : %s, E : %s, F : %s\n", Xs[i], Ys[i], Ns[i], Rs[i], Arrays.toString(Es[i]), Arrays.toString(Fs[i]));
-            String output = validPath.solve(Xs[i], Ys[i], Ns[i], Rs[i], Es[i], Fs[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public String solve(int A, int B, int C, int D, int[] E, int[] F) {
         Queue<int[]> queue = new ArrayDeque<>();

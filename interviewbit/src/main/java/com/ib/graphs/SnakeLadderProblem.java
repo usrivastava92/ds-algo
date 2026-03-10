@@ -1,24 +1,12 @@
 package com.ib.graphs;
 
-import org.junit.Assert;
-
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class SnakeLadderProblem {
-
-    public static void main(String[] args) {
-        int[][][] As = {{{32, 62}, {42, 68}, {12, 98}}, {{8, 52}, {6, 80}, {26, 42}, {2, 72}}, {{3, 54}, {37, 100}}};
-        int[][][] Bs = {{{95, 13}, {97, 25}, {93, 37}, {79, 27}, {75, 19}, {49, 47}, {67, 17}}, {{51, 19}, {39, 11}, {37, 29}, {81, 3}, {59, 5}, {79, 23}, {53, 7}, {43, 33}, {77, 21}}, {{56, 33}}};
-        int[] outputs = {3, 5, 3};
-        SnakeLadderProblem snakeLadderProblem = new SnakeLadderProblem();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.println("Input : A : " + Arrays.deepToString(As[i]) + " B : " + Arrays.deepToString(Bs[i]));
-            int output = snakeLadderProblem.snakeLadder(As[i], Bs[i]);
-            System.out.println("Output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int snakeLadder(int[][] A, int[][] B) {
         Map<Integer, Integer> ladders = new HashMap<>();

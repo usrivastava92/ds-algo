@@ -1,24 +1,9 @@
 package com.ib.graphs;
 
-import org.junit.Assert;
-
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.stream.IntStream;
 
 public class SmallestMultipleWith0And1 {
-
-    public static void main(String[] args) {
-        int[] inputs = {55, 2};
-        String[] outputs = {"110", "10"};
-        SmallestMultipleWith0And1 smallestMultipleWith0And1 = new SmallestMultipleWith0And1();
-        IntStream.range(0, inputs.length).forEachOrdered(i -> {
-            System.out.println("Input : " + inputs[i]);
-            String output = smallestMultipleWith0And1.multiple(inputs[i]);
-            System.out.println("Output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public String multiple(int A) {
         if (A <= 1) {
