@@ -5,13 +5,6 @@ import java.util.Map;
 
 public class Fraction {
 
-
-    public static void main(String... args) {
-        Fraction fraction = new Fraction();
-
-        System.out.println(fraction.fractionToDecimal(2, 3));
-    }
-
     public String fractionToDecimal(int A, int B) {
         long num = A;
         long den = B;

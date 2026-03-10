@@ -4,11 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ColorfulNumber {
-    public static void main(String[] args) {
-        ColorfulNumber colorfulNumber = new ColorfulNumber();
-        System.out.println(colorfulNumber.colorful(1234));
-    }
-
     public int colorful(int A) {
         String num = String.valueOf(A);
         Map<Long, Integer> map = new HashMap<>();

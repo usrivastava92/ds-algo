@@ -5,13 +5,6 @@ import java.util.Map;
 
 public class WindowString {
 
-    public static void main(String[] args) {
-        String S = "ADOBECODEBANC";
-        String T = "ABC";
-        WindowString windowString = new WindowString();
-        System.out.println(windowString.minWindow(S, T));
-    }
-
     public String minWindow(String A, String B) {
         if (A.contains(B)) {
             return B;

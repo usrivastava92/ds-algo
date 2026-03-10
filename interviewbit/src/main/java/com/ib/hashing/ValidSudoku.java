@@ -1,16 +1,10 @@
 package com.ib.hashing;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ValidSudoku {
-
-    public static void main(String[] args) {
-        int[] a = new int[]{1, 2, 3, 4};
-        PriorityQueue<Integer> p = new PriorityQueue<>();
-        Arrays.stream(a).boxed().forEach(p::add);
-        ValidSudoku validSudoku = new ValidSudoku();
-        System.out.println(validSudoku.isValidSudoku(Arrays.asList(new String[]{"53..7....", "6..195...", ".98....6.", "8...6...3", "4..8.3..1", "7...2...6", ".6....28.", "...419..5", "....8..79"})));
-    }
 
     public int isValidSudoku(final List<String> A) {
         Map<Character, Integer> map = new HashMap<>();
