@@ -1,25 +1,6 @@
 package com.ib.graphs;
 
-import com.ds.utils.ArrayUtils;
-import org.junit.Assert;
-
-import java.util.stream.IntStream;
-
 public class RegionInBinaryMatrix {
-
-
-    public static void main(String[] args) {
-        int[][][] inputs = {{{0, 0, 1, 1, 0}, {1, 0, 1, 1, 0}, {0, 1, 0, 0, 0}, {0, 0, 0, 0, 1}}, {{1, 1, 1}, {0, 0, 1}}};
-        int[] outputs = {6, 4};
-        RegionInBinaryMatrix regionInBinaryMatrix = new RegionInBinaryMatrix();
-        IntStream.range(0, inputs.length).forEachOrdered(i -> {
-            System.out.println("Input : ");
-            ArrayUtils.printArr(inputs[i]);
-            int output = regionInBinaryMatrix.solve(inputs[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int solve(int[][] A) {
         if (A == null || A.length == 0 || A[0].length == 0) {

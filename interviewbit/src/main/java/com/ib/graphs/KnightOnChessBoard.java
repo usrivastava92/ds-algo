@@ -1,28 +1,11 @@
 package com.ib.graphs;
 
-import org.junit.Assert;
-
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class KnightOnChessBoard {
-
-    public static void main(String[] args) {
-        int[] As = {8};
-        int[] Bs = {8};
-        int[] Cs = {1};
-        int[] Ds = {1};
-        int[] Es = {8};
-        int[] Fs = {8};
-        int[] outputs = {6};
-        KnightOnChessBoard knightOnChessBoard = new KnightOnChessBoard();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.printf("Input -> A : %s ,B : %s ,C : %s ,D : %s ,E : %s ,F : %s\n", As[i], Bs[i], Cs[i], Ds[i], Es[i], Fs[i]);
-            int output = knightOnChessBoard.knight(As[i], Bs[i], Cs[i], Ds[i], Es[i], Fs[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     private final int[][] steps = {{-2, 1}, {-2, -1}, {2, 1}, {2, -1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
 
