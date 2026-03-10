@@ -1,16 +1,8 @@
 package com.ib.binarysearch;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MedianOfArray {
-
-    public static void main(String... args) {
-        Integer[] arr1 = new Integer[]{1, 12, 15, 26};
-        Integer[] arr2 = new Integer[]{2, 13, 17, 30, 45};
-        MedianOfArray medianOfArray = new MedianOfArray();
-        medianOfArray.findMedianSortedArrays(Arrays.asList(arr1), Arrays.asList(arr2));
-    }
 
     public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
         int len = a.size() + b.size();

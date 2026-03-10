@@ -1,26 +1,9 @@
 package com.ib.binarysearch;
 
-import com.ds.utils.ArrayUtils;
-import org.junit.Assert;
-
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.stream.IntStream;
 
 public class MatrixMedian {
-
-    public static void main(String[] args) {
-        int[][][] As = {{{1, 3, 5}, {2, 6, 9}, {3, 6, 9}}, {{5, 17, 100}}};
-        int[] outputs = {5, 17};
-        MatrixMedian matrixMedian = new MatrixMedian();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.println("Input -> ");
-            ArrayUtils.printArr(As[i]);
-            int output = matrixMedian.findMedian(As[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int findMedian(int[][] A) {
         if (A == null || A.length == 0 || A[0].length == 0) {
