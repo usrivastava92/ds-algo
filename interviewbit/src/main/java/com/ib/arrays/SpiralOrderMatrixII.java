@@ -1,13 +1,6 @@
 package com.ib.arrays;
 
-import com.ds.utils.ArrayUtils;
-
 public class SpiralOrderMatrixII {
-
-    public static void main(String... args) {
-        SpiralOrderMatrixII spiralOrderMatrixII = new SpiralOrderMatrixII();
-        ArrayUtils.printArr(spiralOrderMatrixII.generateMatrix(5));
-    }
 
     public int[][] generateMatrix(int A) {
         int[][] result = new int[A][A];

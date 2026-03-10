@@ -1,21 +1,9 @@
 package com.ib.arrays;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class RepeatAndMissingNumberArray {
-
-    public static void main(String[] args) {
-        int[][] inputs = {{3, 1, 2, 5, 3}};
-        RepeatAndMissingNumberArray repeatAndMissingNumberArray = new RepeatAndMissingNumberArray();
-        IntStream.range(0, inputs.length).forEachOrdered(i -> {
-            System.out.println("Input : " + Arrays.toString(inputs[i]));
-            System.out.println("output : " + repeatAndMissingNumberArray.repeatedNumber(Arrays.stream(inputs[i]).boxed().collect(Collectors.toList())));
-        });
-    }
 
     public ArrayList<Integer> repeatedNumber(final List<Integer> A) {
         ArrayList<Integer> ans = new ArrayList<>();
