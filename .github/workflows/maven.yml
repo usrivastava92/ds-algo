@@ -4,9 +4,6 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: 
-      - '*' # matches every branch
   pull_request:
     branches: [ master ]
 
@@ -24,5 +21,27 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: gradle
-    - name: Build with Gradle
+    - name: Build and test with Gradle
+      id: gradle_build
       run: ./gradlew clean build --no-daemon
+      continue-on-error: true
+    - name: Publish JUnit report
+      if: always()
+      uses: mikepenz/action-junit-report@v5
+      with:
+        report_paths: '**/build/test-results/test/TEST-*.xml'
+        detailed_summary: true
+        include_passed: true
+        require_tests: true
+    - name: Upload test reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: gradle-test-reports
+        path: |
+          **/build/test-results/test/TEST-*.xml
+          **/build/reports/tests/test/**
+        if-no-files-found: ignore
+    - name: Fail workflow if Gradle build failed
+      if: steps.gradle_build.outcome == 'failure'
+      run: exit 1
