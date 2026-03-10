@@ -1,15 +1,8 @@
 package com.ib.twopointers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 
 public class RemoveDuplicatesfromSortedArray {
-
-    public static void main(String... args) {
-        RemoveDuplicatesfromSortedArray removeDuplicatesfromSortedArray = new RemoveDuplicatesfromSortedArray();
-        System.out.println(removeDuplicatesfromSortedArray.removeDuplicates(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))));
-    }
 
     public int removeDuplicates(ArrayList<Integer> a) {
         if (a.size() <= 1) return a.size();
@@ -22,7 +15,6 @@ public class RemoveDuplicatesfromSortedArray {
             }
             i++;
         }
-        System.out.println(a);
         ArrayList<Integer> itemsToKeep = new ArrayList<>();
         i = 0;
         while (i < j) {
