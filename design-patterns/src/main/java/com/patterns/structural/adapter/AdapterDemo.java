@@ -5,8 +5,12 @@ import lombok.ToString;
 
 public class AdapterDemo {
 
-    public static void main(String[] args) {
-        System.out.println(new NewCodeAdapter(new LegacyCode(1, "utkarsh")));
+    public int getId(int serialNumber, String displayName) {
+        return new NewCodeAdapter(new LegacyCode(serialNumber, displayName)).getId();
+    }
+
+    public String getName(int serialNumber, String displayName) {
+        return new NewCodeAdapter(new LegacyCode(serialNumber, displayName)).getName();
     }
 
     private interface NewCode {

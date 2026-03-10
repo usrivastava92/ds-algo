@@ -5,9 +5,16 @@ import lombok.ToString;
 
 public class BuilderDemo {
 
-    public static void main(String[] args) {
-        BuilderClass builderClass = BuilderClass.Builder.getInstance().withA().withB().build();
-        System.out.println(builderClass);
+    public String[] buildValues(boolean includeA, boolean includeB) {
+        BuilderClass.Builder builder = BuilderClass.Builder.getInstance();
+        if (includeA) {
+            builder = builder.withA();
+        }
+        if (includeB) {
+            builder = builder.withB();
+        }
+        BuilderClass builderClass = builder.build();
+        return new String[]{builderClass.getA(), builderClass.getB()};
     }
 
 
@@ -58,4 +65,3 @@ public class BuilderDemo {
 
 
 }
-

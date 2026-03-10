@@ -4,10 +4,9 @@ import lombok.ToString;
 
 public class FactoryDemo {
 
-    public static void main(String[] args) {
-        System.out.println(Factory.getInstance(1));
-        System.out.println(Factory.getInstance(2));
-        System.out.println(Factory.getInstance(3));
+    public String getProductType(int i) {
+        FactoryProduct product = Factory.getInstance(i);
+        return product == null ? null : product.getClass().getSimpleName();
     }
 
 

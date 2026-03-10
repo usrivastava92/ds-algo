@@ -2,15 +2,14 @@ package com.patterns.behavioural.command;
 
 public class CommandDemo {
 
-    public static void main(String[] args) {
-        int a = 3;
-        int b = 4;
-
+    public int executeAdd(int a, int b) {
         ArithmeticCommand addCommand = new AddCommand(a, b);
-        ArithmeticCommand multiplyCommand = new MultiplyCommand(a, b);
+        return (Integer) addCommand.execute();
+    }
 
-        System.out.println(addCommand.execute());
-        System.out.println(multiplyCommand.execute());
+    public int executeMultiply(int a, int b) {
+        ArithmeticCommand multiplyCommand = new MultiplyCommand(a, b);
+        return (Integer) multiplyCommand.execute();
     }
 
     private interface ArithmeticCommand {

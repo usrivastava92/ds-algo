@@ -5,11 +5,16 @@ import lombok.ToString;
 
 public class PrototypeDemo {
 
-    public static void main(String[] args) throws CloneNotSupportedException {
-        ProtoSubclass protoSubclass = new ProtoSubclass("subclass");
-        PrototypeClass prototypeClass1 = new PrototypeClass("A", protoSubclass);
-        System.out.println(prototypeClass1);
-        System.out.println(prototypeClass1.clone());
+    public boolean isDistinctClone(String name, String subclassName) throws CloneNotSupportedException {
+        ProtoSubclass protoSubclass = new ProtoSubclass(subclassName);
+        PrototypeClass prototypeClass1 = new PrototypeClass(name, protoSubclass);
+        return prototypeClass1 != prototypeClass1.clone();
+    }
+
+    public boolean sharesNestedReference(String name, String subclassName) throws CloneNotSupportedException {
+        ProtoSubclass protoSubclass = new ProtoSubclass(subclassName);
+        PrototypeClass prototypeClass1 = new PrototypeClass(name, protoSubclass);
+        return prototypeClass1.getProtoSubclass() == prototypeClass1.clone().getProtoSubclass();
     }
 
     @Getter
@@ -24,8 +29,8 @@ public class PrototypeDemo {
         }
 
         @Override
-        protected Object clone() throws CloneNotSupportedException {
-            return super.clone();
+        protected PrototypeClass clone() throws CloneNotSupportedException {
+            return (PrototypeClass) super.clone();
         }
 
     }

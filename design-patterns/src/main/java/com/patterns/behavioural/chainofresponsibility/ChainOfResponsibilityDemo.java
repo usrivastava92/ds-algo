@@ -2,9 +2,9 @@ package com.patterns.behavioural.chainofresponsibility;
 
 public class ChainOfResponsibilityDemo {
 
-    public static void main(String[] args) {
+    public String sanctionLoan(int amount) {
         LoanRequestProcessor cashier = new Cashier(new Manager(new BranchManager(null)));
-        System.out.println(cashier.sanctionLoan(210));
+        return cashier.sanctionLoan(amount);
     }
 
     private static final class Cashier implements LoanRequestProcessor {

@@ -2,21 +2,33 @@ package com.patterns.behavioural.iterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class IteratorDemo {
 
-    public static void main(String[] args) {
+    public List<Integer> iterate(List<Integer> values) {
         IterClass iterClass = new IterClass();
-        iterClass.add(1);
-        iterClass.add(2);
-        iterClass.add(3);
-        for (Integer i : iterClass) {
-            System.out.println(i);
+        for (int value : values) {
+            iterClass.add(value);
         }
-        iterClass.forEach(System.out::println);
+        List<Integer> traversed = new LinkedList<>();
+        for (Integer i : iterClass) {
+            traversed.add(i);
+        }
+        return traversed;
+    }
+
+    public List<Integer> forEachElements(List<Integer> values) {
+        IterClass iterClass = new IterClass();
+        for (int value : values) {
+            iterClass.add(value);
+        }
+        List<Integer> traversed = new LinkedList<>();
+        iterClass.forEach(traversed::add);
+        return traversed;
     }
 
     private static final class IterClass implements Iterable<Integer> {
@@ -33,10 +45,8 @@ public class IteratorDemo {
 
         @Override
         public Iterator<Integer> iterator() {
-            System.out.println("creating iterator.... ");
             return new Iterator<Integer>() {
 
-                private final List<Integer> local = ARR;
                 private int index = 0;
 
                 @Override

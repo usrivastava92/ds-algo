@@ -4,11 +4,13 @@ import lombok.ToString;
 
 public class AbstractFactoryDemo {
 
-    public static void main(String[] args) {
-        System.out.println(AbstractFactory.getInstance(2).getInstance(1));
-        System.out.println(AbstractFactory.getInstance(2).getInstance(2));
-        System.out.println(AbstractFactory.getInstance(1).getInstance(1));
-        System.out.println(AbstractFactory.getInstance(1).getInstance(2));
+    public String getProductType(int factoryType, int productType) {
+        Factory<FactoryProduct> factory = AbstractFactory.getInstance(factoryType);
+        if (factory == null) {
+            return null;
+        }
+        FactoryProduct product = factory.getInstance(productType);
+        return product == null ? null : product.getClass().getSimpleName();
     }
 
     private static final class AbstractFactory {

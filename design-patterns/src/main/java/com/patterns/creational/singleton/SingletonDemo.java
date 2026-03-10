@@ -1,15 +1,9 @@
 package com.patterns.creational.singleton;
 
-import org.junit.Assert;
-
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class SingletonDemo {
-
-    public static void main(String[] args) {
-        Assert.assertEquals(SingletonClass.getInstance(), SingletonClass.getInstance());
-    }
 
     public static final class SingletonClass {
 
