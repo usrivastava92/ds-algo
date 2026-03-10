@@ -4,9 +4,6 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: 
-      - '**' # matches every branch, including slash-delimited branch names
   pull_request:
     branches: [ master ]
 
