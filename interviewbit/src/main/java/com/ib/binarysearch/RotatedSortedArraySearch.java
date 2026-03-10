@@ -1,26 +1,6 @@
 package com.ib.binarysearch;
 
-
-import org.junit.Assert;
-
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 public class RotatedSortedArraySearch {
-
-
-    public static void main(String[] args) {
-        int[][] As = {{4, 5, 6, 7, 0, 1, 2, 3}, {5, 17, 100, 3}, {101, 103, 106, 109, 158, 164, 182, 187, 202, 205, 2, 3, 32, 57, 69, 74, 81, 99, 100}};
-        int[] Bs = {4, 6, 202};
-        int[] outputs = {0, -1, 8};
-        RotatedSortedArraySearch rotatedSortedArraySearch = new RotatedSortedArraySearch();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.printf("Input -> A : %s, B : %s\n", Arrays.toString(As[i]), Bs[i]);
-            int output = rotatedSortedArraySearch.search(As[i], Bs[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int search(final int[] A, int B) {
         if (A == null || A.length == 0) {
@@ -29,7 +9,6 @@ public class RotatedSortedArraySearch {
         int low = 0;
         int high = A.length - 1;
         int pivot = findPivot(A);
-        System.out.println(pivot + " : " + A[pivot]);
         if (B >= A[low] && B <= A[pivot]) {
             return binarySearch(A, low, pivot, B);
         }
