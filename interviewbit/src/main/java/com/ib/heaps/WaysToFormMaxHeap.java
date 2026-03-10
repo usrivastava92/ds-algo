@@ -1,7 +1,5 @@
 package com.ib.heaps;
 
-import java.util.ArrayList;
-
 public class WaysToFormMaxHeap {
 
     private int MOD = 1000000007;
@@ -52,4 +50,3 @@ public class WaysToFormMaxHeap {
         return new Long(dp[A]).intValue();
     }
 }
-
