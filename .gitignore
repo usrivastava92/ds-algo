@@ -38,3 +38,9 @@ build/
 **/.DS_Store
 */*/.DS_Store
 
+# ignore upgrade artifacts
+.github/java-upgrade/
+
+# ignore legacy groovy build files
+build.gradle
+settings.gradle
