@@ -1,24 +1,8 @@
 package com.ib.arrays;
 
-import org.junit.Assert;
-
-import java.util.Arrays;
 import java.util.TreeSet;
-import java.util.stream.IntStream;
 
 public class MaximumSumTriplet {
-
-    public static void main(String[] args) {
-        int[][] inputs = {{2, 5, 3, 1, 4, 9}, {1, 2, 3}, {18468, 6335, 26501, 19170, 15725, 11479, 29359, 26963, 24465, 5706, 28146, 23282, 16828, 9962, 492, 2996, 11943, 4828, 5437, 32392, 14605}};
-        int[] outputs = {16, 6, 88252};
-        MaximumSumTriplet maximumSumTriplet = new MaximumSumTriplet();
-        IntStream.range(0, inputs.length).forEachOrdered(i -> {
-            System.out.println("Input : " + Arrays.toString(inputs[i]));
-            int output = maximumSumTriplet.solve(inputs[i]);
-            System.out.println("Output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int solve(int[] A) {
         if (A == null || A.length == 0) {

@@ -4,11 +4,6 @@ import java.util.*;
 
 public class MaximumConsecutiveGap {
 
-    public static void main(String... args) {
-        MaximumConsecutiveGap maxConsecutiveGap = new MaximumConsecutiveGap();
-        System.out.println(maxConsecutiveGap.maximumGap(Arrays.asList(1, 10, 5)));
-    }
-
     public int maximumGap(final List<Integer> A) {
         if (A.size() < 2) return 0;
         TreeSet<Integer> set = new TreeSet<>(A);
