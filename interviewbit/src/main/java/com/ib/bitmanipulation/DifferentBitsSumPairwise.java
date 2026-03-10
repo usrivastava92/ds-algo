@@ -7,13 +7,6 @@ import java.util.Map;
 
 public class DifferentBitsSumPairwise {
 
-    public static void main(String... args) {
-        DifferentBitsSumPairwise differentBitsSumPairwise = new DifferentBitsSumPairwise();
-
-
-        System.out.println(differentBitsSumPairwise.cntBits(new ArrayList<>(Arrays.asList(1, 3, 5))));
-    }
-
     public int cntBits(ArrayList<Integer> A) {
         int size = A.size();
         Long sum = 0L;

@@ -2,11 +2,6 @@ package com.ib.bitmanipulation;
 
 public class DivideIntegers {
 
-    public static void main(String... args) {
-        DivideIntegers divideIntegers = new DivideIntegers();
-        System.out.println(divideIntegers.divide(10, 3));
-    }
-
     public int divide(int A, int B) {
         long dividend = new Long(A);
         long divisor = new Long(B);

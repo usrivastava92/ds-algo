@@ -2,12 +2,6 @@ package com.ib.bitmanipulation;
 
 public class ReverseBits {
 
-    public static void main(String... args) {
-        ReverseBits reverseBits = new ReverseBits();
-        System.out.println(reverseBits.reverse(3));
-    }
-
-
     public long reverse(long a) {
         String bits = Long.toBinaryString(a);
         String pad0 = "00000000000000000000000000000000";
