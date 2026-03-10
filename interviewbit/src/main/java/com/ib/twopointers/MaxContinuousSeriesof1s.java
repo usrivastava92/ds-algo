@@ -5,11 +5,6 @@ import java.util.Arrays;
 
 public class MaxContinuousSeriesof1s {
 
-    public static void main(String... args) {
-        MaxContinuousSeriesof1s maxContinuousSeriesof1s = new MaxContinuousSeriesof1s();
-        System.out.println(maxContinuousSeriesof1s.maxone(new ArrayList<Integer>(Arrays.asList(1, 1, 0, 1, 1, 0, 0, 1, 1, 1)), 1));
-    }
-
     public ArrayList<Integer> maxone(ArrayList<Integer> A, int B) {
         int start = 0;
         int len = A.size();

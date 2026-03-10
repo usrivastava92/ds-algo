@@ -1,18 +1,9 @@
 package com.ib.twopointers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class IntersectionOfSortedArrays {
-
-    public static void main(String... args) {
-        IntersectionOfSortedArrays intersectionOfSortedArrays = new IntersectionOfSortedArrays();
-        Integer[] a = new Integer[]{10000};
-        Integer[] b = new Integer[]{10000};
-        System.out.println(intersectionOfSortedArrays.intersect(Arrays.asList(a), Arrays.asList(b)));
-        //[35, 38, 53, 67, 69, 94, 98]
-    }
 
     public ArrayList<Integer> intersect(final List<Integer> A, final List<Integer> B) {
         int lenA = A.size();
