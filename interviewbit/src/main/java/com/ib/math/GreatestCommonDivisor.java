@@ -2,11 +2,6 @@ package com.ib.math;
 
 public class GreatestCommonDivisor {
 
-    public static void main(String... args) {
-        GreatestCommonDivisor greatestCommonDivisor = new GreatestCommonDivisor();
-    }
-
-
     public int gcd(int A, int B) {
         if (A == B) {
             return A;

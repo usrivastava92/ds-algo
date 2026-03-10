@@ -6,11 +6,6 @@ public class SortedPermutationRank {
 
     private Map<Integer, Integer> factorials = new HashMap<>();
 
-    public static void main(String... args) {
-        SortedPermutationRank sortedPermutationRank = new SortedPermutationRank();
-        System.out.println(sortedPermutationRank.findRank("cab"));
-    }
-
     int mod = 1000003;
 
     public int findRank(String A) {
