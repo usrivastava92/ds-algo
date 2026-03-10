@@ -23,26 +23,18 @@ public class IntToRoman {
         map.put(1, "I");
     }
 
-    public static void main(String[] args) {
-        IntToRoman intToRoman = new IntToRoman();
-        System.out.println(intToRoman.intToRoman(23));
-    }
-
-    public  String intToRoman(int A) {
+    public String intToRoman(int A) {
         int[] bars = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        int len = bars.length;
-        String roman = "";
+        StringBuilder roman = new StringBuilder();
         while (A != 0) {
-            for (int i : bars) {
-                int bar = bars[i];
+            for (int bar : bars) {
                 if (A >= bar) {
-                    roman += map.get(bar);
+                    roman.append(map.get(bar));
                     A = A - bar;
-                    System.out.println(A + " " + bar + " " + map.get(bar));
                     break;
                 }
             }
         }
-        return roman;
+        return roman.toString();
     }
 }

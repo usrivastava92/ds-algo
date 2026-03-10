@@ -1,23 +1,6 @@
 package com.ib.strings;
 
-import com.ds.utils.ArrayUtils;
-import org.junit.Assert;
-
-import java.util.stream.IntStream;
-
 public class ConvertToPalindrome {
-
-    public static void main(String[] args) {
-        String[] As = {"abcba", "abecbea", "phmjjmap", "ivjwvi"};
-        int[] outputs = {1, 0, 0, 1};
-        ConvertToPalindrome convertToPalindrome = new ConvertToPalindrome();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.println("Input : " + As[i]);
-            int output = convertToPalindrome.solveDp(As[i]);
-            System.out.println("Output : " + outputs[i]);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int solve(String A) {
         if (A == null || A.length() == 0) {
@@ -72,7 +55,6 @@ public class ConvertToPalindrome {
                 max = Math.max(max, dp[i][j]);
             }
         }
-        ArrayUtils.printArr(dp);
         return len - max <= 1 ? 1 : 0;
     }
 
