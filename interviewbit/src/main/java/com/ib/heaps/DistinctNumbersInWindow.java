@@ -4,12 +4,6 @@ import java.util.*;
 
 public class DistinctNumbersInWindow {
 
-
-    public static void main(String[] args) {
-        DistinctNumbersInWindow distinctNumbersInWindow = new DistinctNumbersInWindow();
-        distinctNumbersInWindow.dNums(new ArrayList<>(Arrays.asList(1, 2, 1, 3, 4, 3)), 3);
-    }
-
     public ArrayList<Integer> dNums(ArrayList<Integer> A, int B) {
         ArrayList<Integer> ans = new ArrayList<>();
         if (B > A.size()) {
