@@ -1,23 +1,8 @@
 package com.ib.strings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class PrettyJson {
-
-    public static void main(String... args) {
-        PrettyJson prettyJson = new PrettyJson();
-        String a = "{A:\"B\",C:{D:\"E\",F:{G:\"H\",I:\"J\"}}}";
-        String b = "[\"foo\", {\"bar\":[\"baz\",null,1.0,2]}]";
-        ArrayList<String> arr = prettyJson.prettyJSON(b);
-
-
-        for (String s : arr) {
-            System.out.println(s);
-        }
-    }
-
 
     public ArrayList<String> prettyJSON(String A) {
         A = A.trim();

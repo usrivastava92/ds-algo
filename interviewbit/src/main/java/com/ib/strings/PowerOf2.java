@@ -1,22 +1,6 @@
 package com.ib.strings;
 
-import org.junit.Assert;
-
-import java.util.stream.IntStream;
-
 public class PowerOf2 {
-
-    public static void main(String[] args) {
-        String[] inputs = {"128", "100"};
-        int[] outputs = {1, 0};
-        PowerOf2 powerOf2 = new PowerOf2();
-        IntStream.range(0, inputs.length).forEachOrdered(i -> {
-            System.out.println("Input : " + inputs[i]);
-            int output = powerOf2.power(inputs[i]);
-            System.out.println("output : " + output);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public int power(String A) {
         if (A == null || A.length() == 0 || A.equals("1") || A.equals("0")) {
