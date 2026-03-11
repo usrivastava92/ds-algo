@@ -2,12 +2,6 @@ package com.ib.linkedlist;
 
 public class ReverseLinkListII {
 
-    public static void main(String... args) {
-        ReverseLinkListII reverseLinkListII = new ReverseLinkListII();
-        ListNode ln = LinkedListUtils.generateLinkedList(1, 2, 3);
-        LinkedListUtils.printLinkedList(reverseLinkListII.reverseBetween(ln, 1, 2));
-    }
-
     public ListNode reverseBetween(ListNode A, int B, int C) {
         ListNode prev = null;
         ListNode curr = A;

@@ -1,25 +1,6 @@
 package com.ib.linkedlist;
 
-import org.junit.Assert;
-
-import java.util.stream.IntStream;
-
 public class ReorderList {
-
-    public static void main(String[] args) {
-        ListNode[] As = {LinkedListUtils.generateLinkedList(1, 2, 3, 4, 5, 6, 7, 8)};
-        ListNode[] outputs = {LinkedListUtils.generateLinkedList(1, 8, 2, 7, 3, 6, 4, 5)};
-        ReorderList reorderList = new ReorderList();
-        IntStream.range(0, As.length).forEachOrdered(i -> {
-            System.out.println("Input : A : ");
-            LinkedListUtils.printLinkedList(As[i]);
-            ListNode output = reorderList.reorderList(As[i]);
-            System.out.println("\nOutput : ");
-            LinkedListUtils.printLinkedList(output);
-            LinkedListUtils.printLinkedList(outputs[i]);
-            Assert.assertEquals(outputs[i], output);
-        });
-    }
 
     public ListNode reorderList(ListNode A) {
         if (A == null || A.next == null) {
