@@ -1,11 +1,11 @@
 package com.gfg.arrays;
 
 public class SortedMatrix {
-    static int getMin(int[][] matrix, int size) {
-        int min = matrix[0][0];
-        pullMin(matrix, 0, 0, size);
-        return min;
-    }
+  static int getMin(int[][] matrix, int size) {
+    int min = matrix[0][0];
+    pullMin(matrix, 0, 0, size);
+    return min;
+  }
 
   private static void pullMin(int[][] matrix, int i, int j, int size) {
     int right = j + 1 < size ? matrix[i][j + 1] : Integer.MAX_VALUE;

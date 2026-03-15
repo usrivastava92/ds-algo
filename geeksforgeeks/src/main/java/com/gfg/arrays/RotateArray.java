@@ -1,4 +1,5 @@
 package com.gfg.arrays;
+
 class RotateArray {
 
   public static void rotate(int[] arr, int k, int size) {
