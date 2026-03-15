@@ -1,26 +1,8 @@
 package com.gfg.arrays;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class ConvertArrayZigZagFashion {
-
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int testCase = sc.nextInt();
-    while (testCase-- > 0) {
-      int size = sc.nextInt();
-      int[] arr = new int[size];
-      for (int i = 0; i < size; i++) {
-        arr[i] = sc.nextInt();
-      }
-      makeZigZagModifiedBubbleSort(arr, size);
-      System.out.println(Arrays.toString(arr));
-      System.out.println(validateAns(arr));
-    }
-    sc.close();
-  }
-
   public static void makeZigZagBySort(int[] arr, int size) {
     Arrays.sort(arr);
     for (int i = 1; i < size; i += 2) {
