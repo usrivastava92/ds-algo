@@ -5,22 +5,6 @@ import java.lang.*;
 import java.io.*;
 
 class RotateArray {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int testCase = sc.nextInt();
-        while (testCase-- > 0) {
-            int size = sc.nextInt();
-            int k = sc.nextInt();
-            int[] arr = new int[size];
-            for (int i = 0; i < size; i++) {
-                arr[i] = sc.nextInt();
-            }
-            k = k % size;
-            rotate(arr, k, size);
-            System.out.println(Arrays.toString(arr).replaceAll("[,]", "").replace("[", "").replace("]", ""));
-        }
-        sc.close();
-    }
 
     public static void rotate(int[] arr, int k, int size) {
         for (int i = 0, len = gcd(k, size); i < len; i++) {

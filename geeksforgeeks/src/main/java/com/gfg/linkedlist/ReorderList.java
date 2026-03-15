@@ -1,16 +1,6 @@
 package com.gfg.linkedlist;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class ReorderList {
-
-    public static void main(String[] args) {
-        Node head = LinkedListUtils.generateList(1, 2, 3, 4, 5);
-        ReorderList reorderList = new ReorderList();
-        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7};
-        LinkedListUtils.printList(reorderList.reorderList(head));
-    }
 
     Node reorderList(Node head) {
         Node front = head;
