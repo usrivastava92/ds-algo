@@ -1,9 +1,5 @@
 package com.gfg.arrays;
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-
 class RotateArray {
 
     public static void rotate(int[] arr, int k, int size) {

@@ -1,9 +1,9 @@
 package com.gfg.arrays;
 
 public class SortedMatrix {
-    static int getMin(int[][] matrix,int size) {
+    static int getMin(int[][] matrix, int size) {
         int min = matrix[0][0];
-        pullMin(matrix,0,0,size);
+        pullMin(matrix, 0, 0, size);
         return min;
     }
 

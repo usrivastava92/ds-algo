@@ -12,7 +12,7 @@ public class Temp {
         int len2 = 0;
         int len3 = 0;
         while (!(sum1 == sum2 && sum2 == sum3)) {
-            if (sum1 <= 0 || sum2 <= 0 || sum3 <= 0 || len1 >= h1.length || len2 >= h2.length || len2 >= h2.length) {
+            if (sum1 <= 0 || sum2 <= 0 || sum3 <= 0 || hasExhaustedAnyStack(len1, h1.length, len2, h2.length, len3, h3.length)) {
                 return 0;
             }
             if (sum1 > sum2 && sum1 > sum3) {
@@ -26,4 +26,14 @@ public class Temp {
         return sum1;
     }
 
+    private static boolean hasExhaustedAnyStack(
+            int len1,
+            int h1Length,
+            int len2,
+            int h2Length,
+            int len3,
+            int h3Length
+    ) {
+        return len1 >= h1Length || len2 >= h2Length || len3 >= h3Length;
+    }
 }

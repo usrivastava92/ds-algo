@@ -3,6 +3,9 @@ package com.gfg.linkedlist;
 public class ReorderList {
 
     Node reorderList(Node head) {
+        if (head == null) {
+            return null;
+        }
         Node front = head;
         Node last = reverseList(copyList(head));
         int size = listSize(head);
@@ -25,7 +28,7 @@ public class ReorderList {
         return head;
     }
 
-    Node reverseList(Node head) {
+    private Node reverseList(Node head) {
         Node prev = null;
         Node curr = head;
         while (curr != null) {
@@ -37,7 +40,7 @@ public class ReorderList {
         return prev;
     }
 
-    int listSize(Node head) {
+    private int listSize(Node head) {
         Node curr = head;
         int i = 0;
         while (curr != null) {
@@ -47,7 +50,7 @@ public class ReorderList {
         return i;
     }
 
-    Node copyList(Node head) {
+    private Node copyList(Node head) {
         Node curr = new Node(head.data);
         Node newHead = curr;
         while (curr != null && head.next != null) {
@@ -57,5 +60,4 @@ public class ReorderList {
         }
         return newHead;
     }
-
 }

@@ -16,7 +16,8 @@ public class TempTest {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {new int[]{3, 2, 1, 1, 1}, new int[]{4, 3, 2}, new int[]{1, 1, 4, 1}, 5},
-                {new int[]{1, 1, 1, 1}, new int[]{2, 3}, new int[]{1, 4}, 0}
+                {new int[]{1, 1, 1, 1}, new int[]{2, 3}, new int[]{1, 4}, 0},
+                {new int[]{100}, new int[]{50}, new int[]{1}, 0}
         });
     }
 
