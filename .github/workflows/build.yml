@@ -24,8 +24,20 @@ jobs:
         id: gradle_build
         run: ./gradlew spotlessCheck clean build --no-daemon
         continue-on-error: true
-      - name: Publish JUnit report
+      - name: Detect JUnit reports
+        id: junit_reports
         if: always()
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          reports=(**/build/test-results/test/TEST-*.xml)
+          if [ ${#reports[@]} -gt 0 ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish JUnit report
+        if: always() && steps.junit_reports.outputs.found == 'true'
         uses: mikepenz/action-junit-report@v6
         with:
           report_paths: "**/build/test-results/test/TEST-*.xml"
