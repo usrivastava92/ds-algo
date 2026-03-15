@@ -5,58 +5,54 @@ import java.util.Queue;
 
 public class SmallestMultipleWith0And1 {
 
-    public String multiple(int A) {
-        if (A <= 1) {
-            return String.valueOf(A);
+  public String multiple(int A) {
+    if (A <= 1) {
+      return String.valueOf(A);
+    }
+    Queue<Pair> queue = new ArrayDeque<>();
+    boolean[] checked = new boolean[A];
+    queue.add(new Pair("1", 1));
+    while (!queue.isEmpty()) {
+      Pair pair = queue.poll();
+      String append0 = pair.str + "0";
+      int append0Remainder = (pair.remainder * (10 % A)) % A;
+      if (append0Remainder == 0) {
+        return append0;
+      } else {
+        if (!checked[append0Remainder]) {
+          checked[append0Remainder] = true;
+          queue.add(new Pair(append0, append0Remainder));
         }
-        Queue<Pair> queue = new ArrayDeque<>();
-        boolean[] checked = new boolean[A];
-        queue.add(new Pair("1", 1));
-        while (!queue.isEmpty()) {
-            Pair pair = queue.poll();
-            String append0 = pair.str + "0";
-            int append0Remainder = (pair.remainder * (10 % A)) % A;
-            if (append0Remainder == 0) {
-                return append0;
-            } else {
-                if (!checked[append0Remainder]) {
-                    checked[append0Remainder] = true;
-                    queue.add(new Pair(append0, append0Remainder));
-                }
-            }
+      }
 
-            String append1 = pair.str + "1";
-            int append1Remainder = ((pair.remainder * (10 % A)) + (1 % A)) % A;
-            if (append1Remainder == 0) {
-                return append1;
-            } else {
-                if (!checked[append1Remainder]) {
-                    checked[append1Remainder] = true;
-                    queue.add(new Pair(append1, append1Remainder));
-                }
-            }
+      String append1 = pair.str + "1";
+      int append1Remainder = ((pair.remainder * (10 % A)) + (1 % A)) % A;
+      if (append1Remainder == 0) {
+        return append1;
+      } else {
+        if (!checked[append1Remainder]) {
+          checked[append1Remainder] = true;
+          queue.add(new Pair(append1, append1Remainder));
         }
-        return "";
+      }
+    }
+    return "";
+  }
+
+  private static class Pair {
+    String str;
+    int remainder;
+
+    public Pair(String str, int remainder) {
+      this.str = str;
+      this.remainder = remainder;
     }
 
-    private static class Pair {
-        String str;
-        int remainder;
-
-        public Pair(String str, int remainder) {
-            this.str = str;
-            this.remainder = remainder;
-        }
-
-        @Override
-        public String toString() {
-            return "Pair{" +
-                    "str='" + str + '\'' +
-                    ", remainder=" + remainder +
-                    '}';
-        }
+    @Override
+    public String toString() {
+      return "Pair{" + "str='" + str + '\'' + ", remainder=" + remainder + '}';
     }
-
+  }
 }
 /*
 1 % 55 = 1

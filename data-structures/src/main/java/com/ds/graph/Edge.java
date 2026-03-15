@@ -11,7 +11,6 @@ import lombok.ToString;
 @ToString
 public class Edge<Node> {
 
-    private final Node from;
-    private final Node to;
-
+  private final Node from;
+  private final Node to;
 }

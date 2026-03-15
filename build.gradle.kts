@@ -1,5 +1,6 @@
 plugins {
     java
+    id("com.diffplug.spotless") version "8.3.0"
 }
 
 allprojects {
@@ -33,5 +34,36 @@ subprojects {
         if (project.name != "data-structures") {
             implementation(project(":data-structures"))
         }
+    }
+
+    apply(plugin = "com.diffplug.spotless")
+
+    spotless {
+        java {
+            target("**/*.java")
+            removeUnusedImports()
+            cleanthat()
+            googleJavaFormat()
+        }
+    }
+}
+
+
+// Task to install project-wide pre-commit hook for Spotless
+tasks.register("installSpotlessHook") {
+    doLast {
+        val hookSrc = file(".githooks/pre-commit")
+        val hookDest = file(".git/hooks/pre-commit")
+        if (!hookSrc.exists()) {
+            throw GradleException("Hook source does not exist: ${hookSrc}")
+        }
+        hookDest.parentFile.mkdirs()
+        hookSrc.inputStream().use { input ->
+            hookDest.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+        hookDest.setExecutable(true)
+        println("Installed pre-commit hook to ${hookDest}")
     }
 }

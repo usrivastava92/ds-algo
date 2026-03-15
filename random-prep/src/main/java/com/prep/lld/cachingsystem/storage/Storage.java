@@ -6,18 +6,17 @@ import com.prep.lld.cachingsystem.policies.IEvictionPolicy;
 
 public abstract class Storage<Key, Value> {
 
-    protected final IEvictionPolicy<Key> evictionPolicy;
-    protected final Long maxSize;
+  protected final IEvictionPolicy<Key> evictionPolicy;
+  protected final Long maxSize;
 
-    public Storage(EEvictionPolicies policy, Long maxSize) {
-        this.maxSize = maxSize;
-        this.evictionPolicy = EvictionPolicyFactory.getFactory(policy);
-    }
+  public Storage(EEvictionPolicies policy, Long maxSize) {
+    this.maxSize = maxSize;
+    this.evictionPolicy = EvictionPolicyFactory.getFactory(policy);
+  }
 
-    abstract public boolean add(Key key, Value value);
+  public abstract boolean add(Key key, Value value);
 
-    abstract public Value get(Key key);
+  public abstract Value get(Key key);
 
-    abstract public void remove(Key key);
-
+  public abstract void remove(Key key);
 }

@@ -1,5 +1,3 @@
 package com.leet.ds.linkedlist;
 
-public class LinkedListInBinaryTree {
-
-}
+public class LinkedListInBinaryTree {}

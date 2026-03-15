@@ -8,11 +8,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class DoublyLinkedListNode<T> {
 
-    @NonNull
-    public T val;
-    @ToString.Exclude
-    public DoublyLinkedListNode<T> prev;
-    @ToString.Exclude
-    public DoublyLinkedListNode<T> next;
-
+  @NonNull public T val;
+  @ToString.Exclude public DoublyLinkedListNode<T> prev;
+  @ToString.Exclude public DoublyLinkedListNode<T> next;
 }
