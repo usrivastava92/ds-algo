@@ -2,35 +2,35 @@ package com.prep.practice;
 
 import com.ds.tree.TreeNode;
 import com.ds.utils.TreeUtils;
-
 import java.util.Arrays;
 import java.util.Collections;
 
 public class MinimumNoOfIterationsToPassInformationToAllNodesInTheTree {
 
-    public static void main(String[] args) {
-        TreeNode<Integer> treeNode = TreeUtils.createRandomTree(20);
-        System.out.println(TreeUtils.getLevelOrderTraverseListLevelWise(treeNode));
+  public static void main(String[] args) {
+    TreeNode<Integer> treeNode = TreeUtils.createRandomTree(20);
+    System.out.println(TreeUtils.getLevelOrderTraverseListLevelWise(treeNode));
+  }
 
+  public static int minIter(TreeNode<Integer> treeNode) {
+    if (treeNode == null || TreeUtils.isLeaf(treeNode)) {
+      return 0;
     }
-
-    public static int minIter(TreeNode<Integer> treeNode) {
-        if (treeNode == null || TreeUtils.isLeaf(treeNode)) {
-            return 0;
-        }
-        if (TreeUtils.getHeight(treeNode) == 2) {
-            return treeNode.getChildren().size();
-        }
-        Integer[] minItrTemp = treeNode.getChildren().stream().mapToInt(MinimumNoOfIterationsToPassInformationToAllNodesInTheTree::minIter).boxed().toArray(Integer[]::new);
-        Arrays.sort(minItrTemp, Collections.reverseOrder());
-        for (int k = 0; k < treeNode.getChildren().size(); k++) {
-            int temp = minItrTemp[k] + k + 1;
-            //minItr[u] = Math.max(minItr[u], temp);
-        }
-        return 1;
+    if (TreeUtils.getHeight(treeNode) == 2) {
+      return treeNode.getChildren().size();
     }
-
-
+    Integer[] minItrTemp =
+        treeNode.getChildren().stream()
+            .mapToInt(MinimumNoOfIterationsToPassInformationToAllNodesInTheTree::minIter)
+            .boxed()
+            .toArray(Integer[]::new);
+    Arrays.sort(minItrTemp, Collections.reverseOrder());
+    for (int k = 0; k < treeNode.getChildren().size(); k++) {
+      int temp = minItrTemp[k] + k + 1;
+      // minItr[u] = Math.max(minItr[u], temp);
+    }
+    return 1;
+  }
 }
 /*
 1. Get minItr(B) of all children (B) of a node (A)

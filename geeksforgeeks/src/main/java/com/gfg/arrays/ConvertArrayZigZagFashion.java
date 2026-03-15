@@ -3,7 +3,6 @@ package com.gfg.arrays;
 import java.util.Arrays;
 
 public class ConvertArrayZigZagFashion {
-
     public static void makeZigZagBySort(int[] arr, int size) {
         Arrays.sort(arr);
         for (int i = 1; i < size; i = i + 2) {

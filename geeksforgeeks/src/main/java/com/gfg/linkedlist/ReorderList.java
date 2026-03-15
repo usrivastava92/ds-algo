@@ -28,18 +28,6 @@ public class ReorderList {
         return head;
     }
 
-    private Node reverseList(Node head) {
-        Node prev = null;
-        Node curr = head;
-        while (curr != null) {
-            Node temp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = temp;
-        }
-        return prev;
-    }
-
     private int listSize(Node head) {
         Node curr = head;
         int i = 0;
@@ -59,5 +47,17 @@ public class ReorderList {
             curr = curr.next;
         }
         return newHead;
+    }
+
+    private Node reverseList(Node head) {
+        Node prev = null;
+        Node curr = head;
+        while (curr != null) {
+            Node temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
     }
 }

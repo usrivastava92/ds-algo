@@ -8,11 +8,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class TreeNode {
 
-    @NonNull
-    public int val;
-    @ToString.Exclude
-    public TreeNode left;
-    @ToString.Exclude
-    public TreeNode right;
-
+  @NonNull public int val;
+  @ToString.Exclude public TreeNode left;
+  @ToString.Exclude public TreeNode right;
 }

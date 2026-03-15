@@ -10,13 +10,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class TreeNode {
 
-    @NonNull
-    public int val;
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    public TreeNode left;
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    public TreeNode right;
-
+  @NonNull public int val;
+  @ToString.Exclude @EqualsAndHashCode.Exclude public TreeNode left;
+  @ToString.Exclude @EqualsAndHashCode.Exclude public TreeNode right;
 }

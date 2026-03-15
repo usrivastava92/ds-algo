@@ -2,16 +2,13 @@ package com.prep.multithreading;
 
 public class ThreadUtils {
 
-    private ThreadUtils(){
+  private ThreadUtils() {}
 
+  public static void sleep(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
-
-    public static void sleep(long millis){
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
+  }
 }

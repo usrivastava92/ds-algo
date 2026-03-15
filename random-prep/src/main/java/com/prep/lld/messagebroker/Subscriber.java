@@ -7,31 +7,31 @@ import java.util.Map;
 
 public class Subscriber {
 
-    private final String name;
-    private final Map<String, Topic> topicMap;
+  private final String name;
+  private final Map<String, Topic> topicMap;
 
-    public Subscriber(String name) {
-        this.name = name;
-        this.topicMap = new HashMap<>();
-    }
+  public Subscriber(String name) {
+    this.name = name;
+    this.topicMap = new HashMap<>();
+  }
 
-    public void addTopic(Topic topic) {
-        topicMap.put(topic.getName(), topic);
-    }
+  public void addTopic(Topic topic) {
+    topicMap.put(topic.getName(), topic);
+  }
 
-    public void removeTopic(String topicName) {
-        topicMap.remove(topicName);
-    }
+  public void removeTopic(String topicName) {
+    topicMap.remove(topicName);
+  }
 
-    public List<String> getAllTopics() {
-        return new ArrayList<>(topicMap.keySet());
-    }
+  public List<String> getAllTopics() {
+    return new ArrayList<>(topicMap.keySet());
+  }
 
-    public void receiveMessage(Message message) {
-        System.out.println("Subscriber : " + name + " received : " + message);
-    }
+  public void receiveMessage(Message message) {
+    System.out.println("Subscriber : " + name + " received : " + message);
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 }
