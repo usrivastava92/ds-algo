@@ -2,34 +2,31 @@ package com.ds.heap;
 
 public interface Heap<T extends Comparable<T>> {
 
-    default int getParentIndex(int childIndex) {
-        return ((childIndex + 1) / 2) - 1;
-    }
+  default int getParentIndex(int childIndex) {
+    return ((childIndex + 1) / 2) - 1;
+  }
 
+  default int getLeftChildIndex(int parentIndex) {
+    return ((parentIndex + 1) * 2) - 1;
+  }
 
-    default int getLeftChildIndex(int parentIndex) {
-        return ((parentIndex + 1) * 2) - 1;
-    }
+  default int getRightChildIndex(int parentIndex) {
+    return ((parentIndex + 1) * 2);
+  }
 
+  default boolean hasParent(int index) {
+    return index != 0;
+  }
 
-    default int getRightChildIndex(int parentIndex) {
-        return ((parentIndex + 1) * 2);
-    }
+  void swap(int i, int j);
 
-    default boolean hasParent(int index) {
-        return index != 0;
-    }
+  boolean isEmpty();
 
-    void swap(int i, int j);
+  void addElement(T element);
 
-    boolean isEmpty();
+  boolean isLeaf(int index);
 
-    void addElement(T element);
+  T removeElement();
 
-    boolean isLeaf(int index);
-
-    T removeElement();
-
-    void heapify(int index);
-
+  void heapify(int index);
 }

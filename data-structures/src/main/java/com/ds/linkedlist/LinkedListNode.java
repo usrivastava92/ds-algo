@@ -8,9 +8,6 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class LinkedListNode<T> {
 
-    @NonNull
-    public T val;
-    @ToString.Exclude
-    public LinkedListNode<T> next;
-
+  @NonNull public T val;
+  @ToString.Exclude public LinkedListNode<T> next;
 }

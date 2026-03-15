@@ -5,14 +5,13 @@ import java.util.Map;
 
 public class RedisUtils {
 
-    private static Map<String, Object> map = new HashMap<>();
+  private static Map<String, Object> map = new HashMap<>();
 
-    public static void set(String key, Object val) {
-        map.put(key, val);
-    }
+  public static void set(String key, Object val) {
+    map.put(key, val);
+  }
 
-    public static Object get(String key) {
-        return map.get(key);
-    }
-
+  public static Object get(String key) {
+    return map.get(key);
+  }
 }

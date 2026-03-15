@@ -1,4 +1,3 @@
 package com.leet.ds.stack;
 
-public class MinimumInsertionsToBalanceParenthesesString {
-}
+public class MinimumInsertionsToBalanceParenthesesString {}
