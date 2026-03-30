@@ -1,0 +1,16 @@
+{
+    "servers": {
+		"leetcode": {
+			"args": [
+				"-y",
+				"@jinzcdev/leetcode-mcp-server"
+			],
+			"command": "npx",
+			"env": {
+				"LEETCODE_SESSION": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYXV0aF91c2VyX2lkIjoiMjYxMTEyNiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImFsbGF1dGguYWNjb3VudC5hdXRoX2JhY2tlbmRzLkF1dGhlbnRpY2F0aW9uQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImI4YzJiMmI5NTk5ZmNhZTE0YWE1Nzg4MmMwYWJlNWM5ZDAyMzY1NmJmZDRlZDVkYTI0OTZmYzFjNGZiZTY5ZGMiLCJzZXNzaW9uX3V1aWQiOiIyMTFlZTllYSIsImlkIjoyNjExMTI2LCJlbWFpbCI6InVzcml2YXN0YXZhOTJAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ1c3JpdmFzdGF2YTkyIiwidXNlcl9zbHVnIjoidXNyaXZhc3RhdmE5MiIsImF2YXRhciI6Imh0dHBzOi8vYXNzZXRzLmxlZXRjb2RlLmNvbS91c2Vycy91dGthcnNoMjYxMi9hdmF0YXJfMTU4ODE4MDAxNS5wbmciLCJyZWZyZXNoZWRfYXQiOjE3NzM1NDkwOTQsImlwIjoiMjIzLjIyNi4xMTAuMTk4IiwiaWRlbnRpdHkiOiJiNjA3MGY5N2RkOTlmZDFhMWY3MjkxNTZlZmQ2MWU4OSIsImRldmljZV93aXRoX2lwIjpbIjdkMjgxNTQ4NDI5MTZlYTZlODRjNTY5NDdiYzExYzhiIiwiMjIzLjIyNi4xMTAuMTk4Il0sIl9zZXNzaW9uX2V4cGlyeSI6MTIwOTYwMH0.ptZkTKodYPSYRzsAGXbpyKdjB3ztQjKXeNN6c1SkLt0",
+				"LEETCODE_SITE": "global"
+			},
+			"type": "stdio"
+		}
+    }
+}

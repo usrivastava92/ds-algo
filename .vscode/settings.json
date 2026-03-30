@@ -1,0 +1,8 @@
+{
+  "java.import.gradle.enabled": true,
+  "java.import.gradle.wrapper.enabled": true,
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.project.outputPath": "build/classes/java",
+  "java.autobuild.enabled": false,
+  "workbench.browser.enableChatTools": true
+}
