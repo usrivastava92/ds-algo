@@ -9,6 +9,15 @@
         "LEETCODE_SESSION": "{env:LEETCODE_SESSION}",
         "LEETCODE_SITE": "global"
       }
+    },
+    "say": {
+      "type": "local",
+      "command": ["/Users/utkarsh/go/bin/mcp-tts"],
+      "enabled": true,
+      "env": {
+        "MCP_TTS_ALLOW_CONCURRENT": false,
+        "GOOGLE_AI_API_KEY": "{env:GEMINI_API_KEY}"
+      }
     }
   }
 }
