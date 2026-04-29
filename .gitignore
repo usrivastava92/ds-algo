@@ -42,3 +42,7 @@ build/
 # ignore legacy groovy build files
 build.gradle
 settings.gradle
+
+# playwright 
+.playwright-mcp/
+
