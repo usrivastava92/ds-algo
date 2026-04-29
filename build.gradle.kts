@@ -21,16 +21,16 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.projectlombok:lombok:1.18.44")
-        annotationProcessor("org.projectlombok:lombok:1.18.44")
+        compileOnly("org.projectlombok:lombok:1.18.46")
+        annotationProcessor("org.projectlombok:lombok:1.18.46")
         implementation("org.apache.commons:commons-lang3:3.20.0")
         implementation("org.apache.poi:poi:5.5.1")
         implementation("org.apache.poi:poi-ooxml:5.5.1")
         implementation("org.slf4j:slf4j-api:2.0.17")
         implementation("junit:junit:4.13.2")
         testImplementation("junit:junit:4.13.2")
-        testCompileOnly("org.projectlombok:lombok:1.18.44")
-        testAnnotationProcessor("org.projectlombok:lombok:1.18.44")
+        testCompileOnly("org.projectlombok:lombok:1.18.46")
+        testAnnotationProcessor("org.projectlombok:lombok:1.18.46")
         if (project.name != "data-structures") {
             implementation(project(":data-structures"))
         }
