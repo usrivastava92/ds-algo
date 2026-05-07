@@ -5,6 +5,8 @@ mode: primary
 
 Your full instructions live in the Obsidian vault at:
 
+If Obsidian is not reachable, run `open -a Obsidian` and try again.
+
 ```
 interview-prep/agents/dsa-interview-agent.md
 ```
