@@ -33,3 +33,6 @@ build/
 
 ### gradle ####
 .gradle
+
+# local interview practice package
+src/main/java/com/leet/ds/interview/

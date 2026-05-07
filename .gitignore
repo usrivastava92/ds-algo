@@ -46,6 +46,3 @@ settings.gradle
 
 # playwright 
 .playwright-mcp/
-
-# File keeps changing 
-leetcode/src/main/java/com/leet/ds/interview/
