@@ -12,12 +12,8 @@
     },
     "say": {
       "type": "local",
-      "command": ["/Users/utkarsh/go/bin/mcp-tts"],
-      "enabled": true,
-      "env": {
-        "MCP_TTS_ALLOW_CONCURRENT": false,
-        "GOOGLE_AI_API_KEY": "{env:GEMINI_API_KEY}"
-      }
+      "command": ["node", "/Users/utkarsh/.nvm/versions/node/v22.14.0/bin/say-mcp-server"],
+      "enabled": true
     }
   }
 }
