@@ -26,7 +26,7 @@ subprojects {
         implementation("org.apache.commons:commons-lang3:3.20.0")
         implementation("org.apache.poi:poi:5.5.1")
         implementation("org.apache.poi:poi-ooxml:5.5.1")
-        implementation("org.slf4j:slf4j-api:2.0.17")
+        implementation("org.slf4j:slf4j-api:2.0.18")
         implementation("junit:junit:4.13.2")
         testImplementation("junit:junit:4.13.2")
         testCompileOnly("org.projectlombok:lombok:1.18.46")
